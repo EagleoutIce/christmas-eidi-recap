@@ -1,0 +1,1846 @@
+\input{global.src}
+\addbibresource{./christmas.bib}
+
+\lstset{lineskip=1.5pt}
+
+\attachfilesetup{color=paletteB}
+\title{Se greit EidI recap}
+\date{\sffamily 22.12.2021}
+
+\setbeamercolor{section in toc}{fg=darkgray}
+
+\begin{document}
+\newsavebox\christmashat
+\savebox\christmashat{\tikz\pingu[:hide,santa hat=paletteB!68!pingu@white,santa hat second=paletteB!12!pingu@white];}
+\newsavebox\pinguI
+\savebox\pinguI{\tikz{\pingu[wings raise,body=paletteB!68!pingu@white,body front=paletteB!38!pingu@white,eyes wink,eyes color=paletteB!68!pingu@white,bill color=paletteB!68!pingu@white,feet color=paletteB!68!pingu@white,heart=paletteB!38!pingu@white]; \fill[pingu@white] ([yshift=11.25mm]pingu-head) circle[radius=15pt];}}
+{\setbeamercolor{background canvas}{bg=paletteB}
+\def\ImpT#1{\textcolor{pingu@white}{#1}}
+\begin{frame}[c,plain]{}
+\begin{layout-imageonly}
+   \begin{center}
+      \vspace*{5.25mm}\par
+      \huge\bfseries\color{paletteB!68!white}
+         Se greit \ImpT{EidI}\llap{\raisebox{-5.94pt}{\scalebox{.375}{\rotatebox{-20}{\usebox\christmashat}}\hskip-11pt}} recap\medskip\\
+      \small Hat jemand schon die P\scalebox{.065}{\usebox\pinguI}ngu-Gang informiert?
+   \end{center}
+\end{layout-imageonly}
+\begin{tikzpicture}[overlay,remember picture]
+   \node[above left,paletteB!68!white,scale=.65] at (current page.south east) {\scriptsize\bfseries\insertauthor~\textbullet~\insertdate};
+\end{tikzpicture}
+\end{frame}
+}
+
+\btfootfalse
+{\setbeamercolor{background canvas}{bg=paletteB}
+\def\ImpT#1{\textit{\color{pingu@white}#1}}
+\begin{frame}[c,plain]{}
+\begin{layout-imageonly}
+\begin{center}
+   \vspace*{5.25mm}\par
+   \bfseries\color{paletteB!68!white}
+      Dieses \ImpT{Recap} liefert \ImpT{keine Garantie auf Vollständigkeit}. Ich konzentriere mich bewusst auf einige wenige aber wichtige \ImpT{Kernthemen} die in der Hinsicht~--- zumindest auf den Folien~--- auch leicht simplifiziert dargestellt sind.\bigskip\par
+      \ImpT{Fröhliche Weihnachten}\\Flo
+\end{center}
+\end{layout-imageonly}
+\end{frame}
+}
+
+\begin{frame}[c]{~}
+\def\g{\only<4->{\color{gray}}}%
+\only<5->{\global\btfoottrue}\vspace*{-4\baselineskip}%
+\only<2|handout:0>{\vspace*{2.25em}\footnotesize%
+I. Einführung\\
+II. Aspekte der Algorithmenkonstruktion\\
+III. Programmierung im Kleinen --- Namen und Dinge\\
+IV. Programmierung im Kleinen --- Steuerung des Programmablaufs\\
+V. Zeigervariable, Arrays und Iterationen\\
+VI. Programmieren im Großen --- Strukturierter Entwurf und Unterprogramme\\
+VII. Einführung in die objektorientierte Programmierung (OOP)\\
+VIII. Dynamische Datenstrukturen\\
+IX. Weiterführende Konzepte der objektorientierten Programmierung\\
+X. Rekursive Algorithmen\\
+XI. Algorithmen und Zeitkomplexität\\
+XII. Suchen und Sortieren}%
+\updateitemize{10.}%
+\only<3->{\vspace*{2.25em}\begin{enumerate}
+   % \only<5-|handout:2>{\itemsep10pt}
+   \item<3-> Algorithmenkonstruktion
+   \item<3-> Programmkonstrukte (Namen \& Programmfluss)
+   \item<3-> Arrays und Iterationen
+   \item<3-> Unterprogramme
+   \item<3-> Objektorientierte Programmierung\bigskip
+   \item<3->[\g 6.] \g Dynamische Datenstrukturen
+   \item<3->[\g 7.] \g Weiterführende Konzepte OOP
+   \item<3->[\g 8.] \g Rekursion
+   \item<3->[\g 9.] \g Laufzeitkomplexität
+   \item<3->[\g10.] \g Suchen und Sortieren
+\end{enumerate}}%
+\end{frame}
+
+\section{Algorithmen}
+\subsection{Eigenschaften}
+\begin{frame}{What can we say about an Algorithm?}
+   \hfill{\onslide<2->{\Large\bfseries\only<3->{\color{gray}\sbfamily} Totale Korrektheit}}\hfill\null\par
+   \vfill\vfill
+   \begin{enumerate}
+      \itemsep10pt
+      \item<3-> {\sbfamily Termination}\\
+         Der Algorithmus endet nach endlich vielen Schritten für jede Eingabe.
+      \item<4-> {\sbfamily Partielle Korrektheit}\\
+         Wenn der Algorithmus terminiert, ist er korrekt.
+   \end{enumerate}
+   \vfill\par
+\end{frame}
+
+
+\ifshowtasks
+\SidebarTask{Algorithmusanalyse}
+\begin{frame}[fragile,c]{Algorithmusanalyse}
+   \onslide<2->{\begin{equation*}
+      L(0) = 1,~L(1) = 1\qquad L(n) = L(n - 1) + L(n - 2) + 1
+   \end{equation*}}\lstfs{10}\vfill
+\begin{plainjava}
+!*\onslide<3->*!public static double L(int n) {
+!*\onslide<4->*!   if(n == 0 || n == 1) return 1;
+!*\onslide<5->*!   int l1 = 1, l2 = 1;
+!*\onslide<6->*!   for(int i = 0; i < n - 1; i++) {
+!*\onslide<7->*!      int tmp = l1;
+!*\onslide<8->*!      l1 = l2;
+!*\onslide<9->*!      l2 = tmp + l2 + 1;
+!*\onslide<6->*!   }
+!*\onslide<10->*!   return l2;
+!*\onslide<3->*!}!*\onslide<1->*!
+\end{plainjava}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+
+\SidebarSolution{Auflösung 1}
+\begin{frame}[fragile,c]{Algorithmusanalyse}
+\begin{enumerate}
+   \itemsep11pt
+   \item<2-> Terminiertheit \begin{itemize}
+      \item<4-> \T{n} ist konstant.
+      \item<5-> Für \(n = 0\), bzw. \(n = 1\) trivial.
+      \item<6-> Für \(n > 1\) wächst \(i\) streng monoton und wird irgendwann \(i < n - 1\) verletzen.
+   \end{itemize}
+   \item<3-> Partielle Korrektheit
+\end{enumerate}
+\begin{tikzpicture}[overlay,remember picture]
+   \node[below left,text width=7cm,scale=.625] at(current page.north east) {%
+\begin{plainjava}
+public static double L(int n) {
+   if(n == 0 || n == 1) return 1;
+   int l1 = 1, l2 = 1;
+   for(int i = 0; i < n - 1; i++) {
+      int tmp = l1; l1 = l2;
+      l2 = tmp + l2 + 1;
+   }
+   return l2;
+}
+\end{plainjava}
+};
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile,c]{Algorithmusanalyse}
+\begin{enumerate}
+   \itemsep11pt
+   \item<1-> Terminiertheit
+   \item<1-> Partielle Korrektheit \begin{itemize}
+      \item<2-> Für \(n = 0\), bzw. \(n = 1\) per Definition.
+      \item<3-> Für \(n > 1\) per vollständiger Induktion. \begin{description}[IH]
+         \itemsep5pt
+         \item<4->[IA] Für \(n = 2\). \onslide<5->{Mit \(i < 1\) haben wir einen Zyklus. Das Ergebnis:
+            \(\T{l2} = 1 + 1 + 1 = 3 = L(2)\) und \(\T{l1} = 1 = L(1)\).\quad\textcolor{lightgray}{\faCheck}}
+         \item<6->[IH] Für \(n \geq 0\) ist \(\T{l2}\) die \(n\)-te und \(\T{l1}\) die \(n-1\)-te Leonardo-Zahl.
+         \item<7->[IS] Mit \(n \to n + 1\) wird durch \bjava{l1 = l2} nämlich nach der IH \onslide<8->{\(\T{l1} = L(n) = L(n + 1 - 1)\) und mit \bjava{l2 = tmp + l2 + 1} wird \(L(n + 1) = L(n + 1 - 1) + L(n + 2 - 1) + 1\).}
+      \end{description}
+   \end{itemize}
+\end{enumerate}
+\begin{tikzpicture}[overlay,remember picture]
+   \node[below left,text width=7cm,scale=.625] at(current page.north east) {%
+\begin{plainjava}
+public static double L(int n) {
+   if(n == 0 || n == 1) return 1;
+   int l1 = 1, l2 = 1;
+   for(int i = 0; i < n - 1; i++) {
+      int tmp = l1; l1 = l2;
+      l2 = tmp + l2 + 1;
+   }
+   return l2;
+}
+\end{plainjava}
+};
+\end{tikzpicture}
+\end{frame}
+\SidebarReset
+\fi
+
+\subsection{Definition}
+
+\begin{frame}[c]{But what is an Algorithm?}
+   \begin{center}
+      \onslide<2->{Eine eindeutige Handlungsvorschrift zur Lösung eines Problems.}
+   \end{center}\vfill
+\begin{itemize}
+      \itemsep12pt
+      \item<3-> Endlich viele wohldefinierte Einzelschritte.
+      \item<4-> Kann grafisch, textuell,~\ldots\ erfolgen.
+      \item<5-> {\sbfamily Fordert gemeinsames Sprachverständnis.}
+\end{itemize}
+\end{frame}
+
+\subsection{Algorithmus-Diskussion}
+{\def\comm#1{\hfill\textcolor{gray}{\footnotesize#1}}
+\begin{frame}[c]{Discussing an Algorithm}
+\centering\begin{tikzpicture}
+   \onslide<2->{\node (p) at (0,0) {\strut Problem};}
+   \onslide<3->{\node (l) at (7,0) {\strut Lösung};}
+   \onslide<4->{\draw[-Kite] (p) -- (l) node[pos=.5,fill=white] {\null~?~\null};}
+\end{tikzpicture}
+\vfill
+\begin{itemize}
+   \itemsep7.5pt
+   \item<5-> Problemspezifikation\comm{Was meinen Sie mit \say{schnell}?}
+   \item<6-> Problemabstraktion\comm{Was ist gegeben, was ist gesucht?}
+   \item<7-> Algorithmenentwurf\comm{Wie kommen wir von gegeben zu gesucht?}
+   \item<8-> Korrektheitsnachweis\comm{Löst unser Ansatz das Problem?}
+   \item<9-> Aufwandsanalyse\comm{Wie verhält er sich?}
+\end{itemize}
+\end{frame}}
+
+\ifshowtasks
+\newsavebox\guenther
+\savebox\guenther{\tikz\pingu[glasses round,santa hat, santa beard,eyes shiny,pants=pingu@red];}
+\SidebarRaw{\tiny\begin{itemize}
+   \item\!\! Spezifikation
+   \item\!\! Abstraktion
+   \item\!\! Algorithmus
+   \item\!\! \textcolor{gray}{Korrektheit}
+   \item\!\! \textcolor{gray}{Analyse}
+\end{itemize}\medskip\par}
+
+\SidebarTask{Plätzchenladen}
+\begin{frame}{Bauen Sie mir das}
+% dimen 2 for interword spacing
+\onslide<2->{\footnotesize\fontdimen2\font=.744ex\relax Guten Tag ich heiße Günther und ich bin Besitzer eines Plätzchen-\allowbreak ladens. Dafür verwende ich verschiedene Mehle (Weizen oder Dinkel), verwende Zucker oder Süßungsmittel, sowie stets eine weitere Komponente (Kokos oder Zimt).
+
+Da ich alle Plätzchen gleich gern habe, werde ich sie alle immer zum selben Preis verkaufen.
+Geld an sich ist auch gar nicht das Problem, leider können mir meine Zulieferer immer nur eine begrenzte Menge (in Gramm) an den jeweiligen Stoffen zur Verfügung stellen~--- die kann ich ihnen aber geben. Die habe ich.
+Weiter habe ich pro Jahr immer eine handvoll an Rezepten, die immer eine bestimmte Anzahl eines Mehls, eines Süßungsstoffes und einer weiteren Komponente pro Plätzchen benötigen.
+
+Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich insgesamt immer maximal viel Plätzchen aus den gegebenen Ressourcen backen kann.}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<3->{\node[below left=.33cm,scale=.42] at(current page.north east) {\usebox\guenther};}
+\end{tikzpicture}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+\SidebarSolution{Auflösung 2}
+\def\imp<#1>#2{\foreach\word in {#2}{\savebox0{\word}\makebox[\wd0]{\only<#1>{\color{paletteB}\sbfamily}\only<\the\numexpr#1+1\relax->{\color{pingu@black}}\word}\space}}
+\begin{frame}{Was willer denn?}
+ \only<2->{\color{gray}}\footnotesize\fontdimen2\font=.744ex\relax Guten Tag ich heiße Günther und ich bin Besitzer eines Plätzchen-\allowbreak ladens. Dafür verwende ich verschiedene \imp<10>{Mehle}(Weizen oder Dinkel), verwende \imp<10>{Zucker,oder,{Süßungsmittel,}}sowie stets eine \imp<10>{weitere,Komponente}(Kokos oder Zimt).
+
+Da ich alle Plätzchen gleich gern habe, werde ich sie \imp<4>{alle,immer,zum,selben,Preis,verkaufen.}\imp<3>{Geld,an,sich,ist,auch,gar,nicht,das,{Problem,}}leider können mir meine \imp<5>{Zulieferer}immer nur eine \imp<5>{begrenzte,Menge,{(in},{Gramm)}}an den jeweiligen Stoffen zur Verfügung stellen~--- die kann ich ihnen aber geben. \imp<6>{Die,habe,ich.}Weiter habe ich pro Jahr immer eine handvoll an \imp<7>{{Rezepten,}}die immer eine \imp<8>{bestimmte,Anzahl,eines,{Mehls,},eines,Süßungsstoffes}und einer \imp<8>{weiteren,Komponente,pro,Plätzchen}benötigen.
+
+Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich insgesamt immer \imp<9>{maximal,viel,Plätzchen,aus,den,gegebenen,Ressourcen,backen}kann.
+\begin{tikzpicture}[overlay,remember picture]
+\onslide<12-|handout:2>{\node[fill=pingu@white,draw=pingu@black,fill opacity=.95,text width=11.25cm,rounded corners=2.5pt,scale=1] at([xshift=9.5mm,yshift=-17.25pt]current page.center) {\vspace*{-.8\topsep}
+\begin{itemize}
+   \itemsep1pt
+   \item<12-> \textsb{Plätzchen:}\hfill\only<20->{Produkt, an dessen Menge wir interessiert sind.}
+   \item<13-> \textsb{Plätzchenmenge:}\hfill\only<21->{Eine natürliche Zahl \(P \geq 0\).}
+   \item<14-> \textsb{Zulieferer:}\hfill\only<22->{Stellt Ressourcen für Produktion zur Verfügung.}
+   \item<15-> \textsb{Ressource:}\hfill\only<23->{Ressource \(i\) wird für Rezept benötigt.}
+   \item<16-> \textsb{Ressourcenmenge:}\hfill\only<24->{Fließkommazahl \(0 \leq r_i \in \R\) in Gramm.}
+   \item<17-> \textsb{Rezept:}\\
+   \only<25->{Tupel \(R_\ell = (k_{\ell_1}, k_{\ell_2}, k_{\ell_3})\) für ein Plätzchen. Anwendung: \(r_{\ell_1} -\!= k_{\ell_1}\), \(r_{\ell_2} -\!= k_{\ell_2}\) und \(r_{\ell_3} -\!= k_{\ell_3}\). Sowie \(P +\!= 1\). Anwendbar, wenn \(k_{\ell_m} \leq r_{\ell_m}\).}
+   \item<18-> \textsb{Komponente:}\hfill\only<26->{Eine benötigte \(0 < k_\ell \in \R\) Ressourcenmenge.}
+   \item<19-> \textsb{Maximal viele Plätzchen aus gegebenen Ressourcen:}\\
+   \only<27->{Für gegebene \(r_i\) und Rezepte \(R_\ell\), maximale Plätzchenmenge \(k \in \N\) aller anwendbaren Rezeptkombinationen: \(\bigtimes_{j \in k} R_{\ell_j}\).}
+\end{itemize}
+};}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[c]{Abstraktion}
+\begin{itemize}[<+(1)->]
+   \itemsep10pt
+   \item Gegeben:
+      \begin{itemize}
+         \itemsep6pt
+         \item Ressourcenmengen \(r_1, r_2, \ldots, r_n\)
+         \item Rezepte \(R = \{(k_3, k_7, k_1), (k_4, k_2, k_9), \ldots\}\), sei \(\abs{R} = m\)
+      \end{itemize}
+   \item Gesucht: \begin{itemize}
+      \itemsep6pt
+      \item Maximale Anwendbarkeit \(k\) der Rezepte.
+   \end{itemize}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Algorithmenkonstruktion}
+\begin{itemize}[<+(1)->]
+   \itemsep10pt
+   \item Erkenntnisse: \begin{itemize}
+      \itemsep3.33pt
+      \item Es gibt dieses Maximum. Mit \(0 \leq r_i \in \R\) und \(0 < k_i \in \R\) sind irgendwann keine Rezepte mehr anwendbar.
+      \item Das Maximum muss nicht eindeutig sein.
+      \item Die Reihenfolge der Rezeptanwendung spielt keine Rolle.
+      \item Jede Anwendung verringert Ressourcen.
+   \end{itemize}
+   \item Idee: \begin{itemize}
+      \itemsep3.33pt
+      \item Beginne mit \say{Anwendungsvektor} \(A = (0, 0, \ldots, 0)\) mit \(\abs{A} = m\).
+      \item Finde maximale Anwendbarkeit \(\max a_i = R_{\max, i}\) von Rezept \(i\) durch Inkrement bis nicht mehr anwendbar.
+      \item Probiere alle \(A = (a_1, \ldots, a_m)\) mit \(0 \leq a_i \leq R_{\max, i}\).
+      \item Speichere maximale anwendbare Summe \(\sum_{i = 0}^m a_i\).
+   \end{itemize}
+\end{itemize}
+\onslide<1->{\begin{tikzpicture}[overlay,remember picture]
+   \node[below left=.5cm,yshift=-1.15cm] at (current page.north east) {\(r_1, \ldots, r_n\) und \(R = \{(k_1, k_2, k_3)_1, \ldots, (\ldots)_m\} \longrightarrow k\)};
+\end{tikzpicture}}
+\end{frame}
+
+\begin{frame}[b]{Algorithmenkonstruktion\rhead{II}}
+\begin{itemize}[<+(1)->]
+   \itemsep4pt
+   \item Ist \(A = (a_1, \ldots, a_m)\) anwendbar?
+\begin{algorithm}[H]
+\onslide<3->{\For{\(i \gets 0\) \KwTo \(m\) \KwStep 1}{
+   \onslide<4->{\Comment{Wende \(R_i\) genau  \(a_i\) mal an.}}
+   \onslide<5->{\(r \gets (k_a, k_b, k_c) \gets R_i\)\;}
+   \onslide<6->{\(r_a \gets r_a - a_i \cdot k_a\)\;}
+   \onslide<7->{\(r_b \gets r_b - a_i \cdot k_b\)\;}
+   \onslide<8->{\(r_c \gets r_c - a_i \cdot k_c\)\;}
+   \onslide<9->{\Comment{Oder: \say{Reduce \(r_a, r_b, r_c\) by \(a_i\) times \(k_a, k_b, k_c\) respectively}}}
+}}
+\onslide<10->{\KwRet{\(\forall_{i \in \{1, \ldots, n\}} r_i \geq 0\)\;}}
+\end{algorithm}
+   % \item \say{}.
+   % \item Wir werden schreiben \say{anwendbar(\(A\))}.
+\end{itemize}
+\onslide<1->{\begin{tikzpicture}[overlay,remember picture]
+   \node[below left=.5cm,yshift=-1.15cm] at (current page.north east) {\(r_1, \ldots, r_n\) und \(R = \{(k_1, k_2, k_3)_1, \ldots, (\ldots)_m\} \longrightarrow k\)};
+\end{tikzpicture}}
+\end{frame}
+
+\begin{frame}[b]{Algorithmenkonstruktion\rhead{III}}
+\begin{itemize}[<+(1)->]
+   \itemsep4pt
+   \item Was sind die Maxima \(R_{\max, i}\)?
+   \item Wir schreiben \(A_{i \gets j}\) für \((0, \ldots, a_{i - 1}, j, a_{i + 1}, \ldots, 0)\).
+\begin{algorithm}[H]
+\onslide<4->{\For{\(i \gets 0\) \KwTo \(m\) \KwStep 1}{
+   \onslide<5->{\Comment{Inkrementiere \(a_i\) bis nicht mehr anwendbar.}}
+   \onslide<6->{\(A \gets (0, \ldots, 0)\)\;
+   \(j \gets 1\)\;}
+   \onslide<7->{\lWhile{anwendbar(\(A_{i \gets j}\))} {\(j \gets j + 1\)}}
+   \onslide<8->{\Comment{\(j\) ist eins höher als das anwendbare Maximum.}}
+   \onslide<9->{\(R_{\max, i} \gets j - 1\)\;}
+}}
+\onslide<10->{\KwRet{\(\forall_{i \in \{1, \ldots, n\}} r_i \geq 0\)\;}}
+\end{algorithm}
+   % \item Wir werden schreiben \say{anwendbar(\(A\))}.
+\end{itemize}
+\onslide<1->{\begin{tikzpicture}[overlay,remember picture]
+   \node[below left=.5cm,yshift=-1.15cm] at (current page.north east) {\(r_1, \ldots, r_n\) und \(R = \{(k_1, k_2, k_3)_1, \ldots, (\ldots)_m\} \longrightarrow k\)};
+\end{tikzpicture}}
+\end{frame}
+
+\begin{frame}[b]{Algorithmenkonstruktion\rhead{IV}}
+\begin{itemize}[<+(1)->]
+   \itemsep4pt
+   \item Und nun das testen aller möglichen Anwendungen:
+\begin{algorithm}[H]
+\onslide<3->{\(\text{guatzla} \gets 0\)\;}
+\onslide<4->{\For{\(A \gets (0, \ldots, 0)\) \KwTo \((R_{\max, 1}, \ldots, R_{\max, m})\)}{
+   \onslide<5->{\If{anwendbar(\(A\))} {
+      \onslide<6->{\(\text{tmp} \gets \sum_{i \gets 0}^m a_i\)\;}
+      \onslide<7->{\(\text{guatzla} \gets \max\{a_i, \text{guatzla}\}\)\;}
+   }}
+}
+\onslide<8->{\KwRet{\(\text{guatzla}\)\;}}}
+\end{algorithm}
+\end{itemize}
+\onslide<1->{\begin{tikzpicture}[overlay,remember picture]
+   \node[below left=.5cm,yshift=-1.15cm] at (current page.north east) {\(r_1, \ldots, r_n\) und \(R = \{(k_1, k_2, k_3)_1, \ldots, (\ldots)_m\} \longrightarrow k\)};
+\end{tikzpicture}}
+\end{frame}
+\SidebarReset
+\fi
+
+\subsection{Recap}
+\begin{frame}[c]{\paletteB{\sbfamily Kurzgesagt}\hfill Algorithmen}
+\begin{itemize}[<+(1)->]
+   \itemsep14pt
+   \item Totale Korrektheit \begin{itemize}
+      \item \textit{Terminiertheit:}\hfill Endliche Schritte für jede Eingabe.
+      \item \textit{Partielle Korrektheit:}\hfill Wenn terminiert, dann korrekt.
+   \end{itemize}
+   \item Abstraktion ist wichtig.
+\end{itemize}
+\LargeSide
+\end{frame}
+
+
+\section{Konstrukte}
+\subsection{Datentypen}
+\centering\def\dt#1{{\large\bfseries\textcolor{paletteB!68!white}{\strut#1}}}
+\begin{frame}[c]{Primitive Datentypen}
+\begin{layout-imageonly}
+\begin{tikzpicture}[scale=2.65]
+   \onslide<2->{\node[right] (boolean) at(0,0)             {\dt{boolean}};}
+   \onslide<3->{\node[right] (byte) at(0,-1.66*1/2.65)     {\dt{byte}};}
+   \onslide<3->{\node[right=6.5mm] (short) at(byte.east)   {\dt{short}};}
+   \onslide<4->{\node[below=1.35cm] (char) at(short.south) {\dt{char}};}
+   \onslide<3->{\node[right=6.5mm] (int) at(short.east)    {\dt{int}};}
+   \onslide<3->{\node[right=6.5mm] (long) at(int.east)     {\dt{long}};}
+   \onslide<3->{\node[right=6.5mm] (float) at(long.east)   {\dt{float}};}
+   \onslide<3->{\node[right=6.5mm] (double) at(float.east) {\dt{double}};}
+
+\begin{scope}[every path/.append style={draw,-Kite}]
+\onslide<5->{\path (byte) -- (short);
+\path (short) -- (int);
+\path (int) -- (long);
+\path (long) -- (float);
+\path (float) -- (double);}
+\onslide<6->{\path[rounded corners=2pt] (char) -| (int) coordinate[pos=.3] (join);
+\node[below right,xshift=5mm,yshift=-1mm] (join-d) at (join) {UTF-8};
+\path[gray] (join.east) to[bend right] (join-d.west);}
+\onslide<7->{
+   \node[gray,above] at (byte.north) {8};
+   \node[gray,above] at (short.north) {16};
+   \node[gray,above] at (int.north) {32};
+   \node[gray,above] at (long.north) {64};
+   \node[gray,above] at (float.north) {32};
+   \node[gray,above] at (double.north) {64};
+   \node[gray,above] at (char.north) {16};
+}
+\onslide<8->{\draw[decoration={brace,mirror,amplitude=3pt},decorate,-] ([yshift=1pt]float.south west) -- ([yshift=1pt]double.south east) node[pos=.5,below=4.5pt] {\sbfamily Rundungsproblem!};}
+\onslide<9->{\draw[decoration={brace,mirror,amplitude=3pt},decorate,-] ([yshift=1pt]byte.south west) -- ([yshift=1pt]short.south east) node[pos=.5,below=4.5pt] {\sbfamily \(+\),~~\(/\),~~\ldots~~\(\longrightarrow\)~~\bjava{int}};}
+\end{scope}
+\end{tikzpicture}
+\end{layout-imageonly}
+\end{frame}
+
+\def\ms#1{{\color{paletteB!68!white}\mathbf{#1}}}
+\begin{frame}[c]{Präzedenzregeln}
+\def\to{\raisebox{1pt}{\;\tikz\draw[pingu@black!80!pingu@white,-{Kite[scale=1.05]},line cap=round,line width=.925pt] (0,0) -- (6mm,0);}}%
+\begin{itemize}
+   \item<2-> Eine Auswahl:
+   \begin{alignat*}{4}
+      \onslide<3->{\ms{a\text{++},~~a\text{-\,-}}}&\onslide<4->{\to~\ms{!a,~~ -a,~~ \text{++}a,~~\text{-\,-}a}}&&\onslide<5->{\pause\to~\ms{a~*~b,~~a~/~b,~~a~\%~b}} \\
+      &\onslide<6->{\to~\ms{a+b,~~a-b}}&& \onslide<7->{\to~\ms{a==b,~~a<b,~~\ldots}}\\
+      & \onslide<8->{\to~\ms{a~\textasciicircum~b}}&&\onslide<9->{\to~\ms{a~\&\&~b}}\\
+      & \onslide<10->{\to~\ms{a~||~b}}
+      \onslide<1->
+   \end{alignat*}
+\end{itemize}
+\end{frame}
+
+
+\ifshowtasks
+\SidebarTask{Typbestimmung}
+\begin{frame}{Typbestimmung}
+\onslide<2->{\flushleft Bestimmen Sie für jeden der folgenden Java-Ausdrücke den Typ \textit{jedes Teilausdrucks} sowie das Gesamtergebnisses. Sie dürfen Rundungsprobleme der Sprache ignorieren:\vfill
+\begin{itemize}
+   \itemsep10pt
+   \item \bjava{14 - 3D * 2 / 12}
+   \item \bjava{(char) ((byte) 'a' + 3) + " Sonne"}
+   \item \bjava{14 - 2 + (3 > 9 || true ^ false ? "Hallo" : "Welt")}
+   \item \bjava{7/2 - 3 * 2.5 + 2f}
+\end{itemize}}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+\SidebarSolution{Auflösung 3}
+\def\mj#1{\text{\bjava{#1}}}
+\def\ob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{\mj{#2}}\only<#1->{\overbrace{\mj{#2}}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
+\def\gub<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\underbrace{#2}_{\makebox[0pt]{\scriptsize\mj{#3}}}}}
+\def\gob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\overbrace{#2}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
+% \underbrace{\mj{14}}_{\mj{int}} \mjava{-} \underbrace{\mj{3D}}_{\mj{double}} \mjava{*} \underbrace{\mj{2}}_{\mj{int}} \mjava{/} \underbrace{\mj{12}}_{\mj{int}}
+\begin{frame}[fragile,c]{Typbestimmung\rhead{II}}
+   \begin{itemize}
+      \itemsep14pt
+      \item<2-> \(\ob<3>{14}{int} \mj{-} \gub<5>{\gob<4>{\ob<3>{3D}{double} \mj{*} \ob<3>{2}{int}}{double} \mj{/} \ob<3>{12}{int}}{double} \only<6->{{}= \ob<6>{13.5}{double}}\)
+      \item<7-> \(\gob<11>{(\mj{char})~\gub<10>{(\gub<9>{(\mj{byte}) \ob<8>{'a'}{char}}{byte} + \ob<8>{3}{int})}{int}}{char} + \ob<8>{\" Sonne\"}{String} \only<12->{{}=\ob<12>{\"d Sonne\"}{String}}\)
+   \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,c]{Typbestimmung\rhead{III}}
+   \begin{itemize}
+      \itemsep14pt
+      \item<2-> \(\gob<7>{\ob<3>{14}{int} \mj{-} \ob<3>{2}{int}}{int} \mj{+} \gob<6>{(\gub<5>{\gub<4>{\ob<3>{3}{int} \mj{>} \ob<3>{9}{int}}{boolean} \mj{||} \gub<4>{\ob<3>{true}{boolean} \mj{^} \ob<3>{false}{boolean}}{boolean}}{boolean} \mj{?} \ob<3>{\"Hallo\"}{String} \mj{:} \ob<3>{\"Welt\"}{String})}{String}\) \\[-6pt]
+      \onslide<8->{\({}= \ob<8>{\"12Hallo\"}{String}\)}
+      \item<9-> \(\gob<12>{\gub<11>{\ob<10>{7}{int}\mj{/}\ob<10>{2}{int}}{int} \mj{-} \gub<11>{\ob<10>{3}{int} \mj{*} \ob<10>{2.5}{double}}{double}}{double} \mj{+} \ob<10>{2f}{float} \only<13->{{}= \ob<13>{-2.5}{double}}\)
+   \end{itemize}
+\end{frame}
+% \item<12-> \bjava{}
+% \item \bjava{7/2 - 3 * 2.5 + 2f}
+\SidebarReset
+\fi
+
+\subsection{Definitionen und Blöcke}
+\begin{frame}[c]{Variablendefinition}
+   \begin{description}[Initialisierung]
+      \itemsep=12pt
+      \item<2->[Deklaration] Es gibt etwas mit diesem Namen (und Typ):\\
+         \onslide<3->{\bjava{int x;}\quad \bjava{char w;}}
+      \item<4->[Zuweisung] Wertzuweisung, bzw. Ersetzung des Wertes:\\
+         \onslide<5->{\bjava{x = 12; x = 9}\quad \bjava{w = 'k';}}
+      \item<6->[Initialisierung] \textit{Erste} Wertzuweisung zu einer Variable:\\
+         \onslide<7->{\bjava{int x = 12;}\quad \bjava{char w; w = 'x';}}
+   \end{description}\medskip
+   % deklaration, initialisierung und defintion
+   % noch eine Aufgabe dazu
+   \begin{center}
+      \onslide<8->{\bjava{final} erzwingt, dass eine Variable nur Initialisiert und dann nicht mehr zugewiesen werden darf.}
+   \end{center}
+\end{frame}
+
+\newsavebox\holdi
+\savebox\holdi{\tikz\pingu[right wing grab, left wing wave,eyes angry,santa beard];}
+\begin{frame}[c,fragile]{Standardwerte}
+   \begin{itemize}[<+(1)->]
+      \itemsep10pt
+      \item Standardwerte für: \begin{itemize}
+         \itemsep3pt
+         \item Klassen-Variablen (\bjava{static})
+         \item Instanz-Variablen
+         \item Array-Komponenten (wie bei \bjava{new int[]})
+      \end{itemize}
+      \item Der Standardwert ist \say{Null}: \begin{itemize}
+         \itemsep3pt
+         \item \bjava{byte}, \bjava{short}, \bjava{int}, \bjava{long} $\longrightarrow$ \bjava{0}
+         \item \bjava{float}, \bjava{double} $\longrightarrow$ \bjava{0.0}
+         \item \bjava{char} $\longrightarrow$ \T{'}\!\!\bjava{\\u0000}\T{'} (\say{Unicodesymbol mit Wert \(0\)})
+         \item \bjava{boolean} $\longrightarrow$ \bjava{false}
+         \item Komplexe Datentypen $\longrightarrow$ \bjava{null}
+      \end{itemize}
+      % \item Allgemein: Zahlen \& Zeichen \(0\), boolean \bjava{false}, Rest \bjava{null}.
+   \end{itemize}
+   % \begin{center}
+   %    Wir verlassen uns nicht auf Standardwerte
+   % \end{center}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<12->{\node[below left,yshift=.33cm,scale=.65] (d) at(current page.north east) {\rotatebox{180}{\usebox\holdi}};
+   \node[left] at(d.west) {Explicit is betta!};}
+\end{tikzpicture}
+\end{frame}
+
+\newcommand<>\lm[1][]{\only#2{#1\llap{\textcolor{paletteB!68!white}{\faCaretRight}~}}}
+\makeatletter
+\lhns@elemwidth3cm
+\lhns@minborderheight3.25cm
+\makeatother
+\begin{frame}[c,fragile]{Blöcke}
+   \begin{itemize}[<+(1)->]
+      \itemsep10pt
+      \item Methodenaufrufe erzeugen \say{Stack-Frames}.
+      \item Code-Blöcke arbeiten vergleichbar.
+      \item Beim Verlassen wird alles davon vom Stack geschmissen.
+   \end{itemize}
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\onslide<5->
+\begin{plainjava}
+!*\lm<6|handout:0>*!int x = 5;
+{
+!*\lm<7|handout:0>*!   double b = 12.5;
+!*\lm<8>*!   x = x + (int) b;
+}
+!*\lm<9-|handout:0>*!int y = x;
+\end{plainjava}
+\column{.5\linewidth}
+\onslide<5->{\downsize{.45\linewidth}{\begin{tikzpicture}[lhns@basestyle/.append style={execute at begin node=\strut,font=\ttfamily},lhns@blockstyle/.append style={draw=gray,thick}]
+\begin{heap-n-stack}{}
+\only<6->{\stack{x = \only<-7|handout:1>{5}\only<8-|handout:0>{17}}}
+\only<7-8>{\stack{- Block -}
+\stack{b = 12.5}}
+\only<9-|handout:0>{\stack{y = 17}}
+\renderstack
+\end{heap-n-stack}
+\end{tikzpicture}}}
+\end{columns}
+\end{frame}
+
+\subsection{Überschatten}
+\newsavebox\pingushadow
+\savebox\pingushadow{\pingudefaults{wings grab}\begin{tikzpicture}
+   \scope[xshift=2.95cm,yshift=.21cm,canvas is xz plane at y=-1,rotate=180,scale=1.165]
+      \pingudefaultsappend{body=pingu@black,body front=pingu@black,feet color=pingu@black,bill color=pingu@black,eyes=none,wings=none}
+      \pingu[@block/.style={fill=pingu@black!38!white}];% no feet part problems on shadow
+      \pingu[:ghost glow,feet=none];
+   \endscope
+   \pingu[cup=pingu@green!76!paletteB,eyes wink];
+   \scope[xshift=1.95cm,yshift=-.44cm,scale=.25]
+      \pingu[:hide,feet=normal,feet color=pingu@yellow!66!pingu@black,feet front];
+      \pingu[wings wave,eyes shiny,@block/.append style={fill=#1!66!pingu@black},heart=paletteB!68!white,hat=paletteB];% get feet behind but still above shadow
+   \endscope
+\end{tikzpicture}}
+\begin{frame}[c,fragile]{Überschatten}
+\vspace*{.885\baselineskip}\begin{itemize}[<+(1)->]
+   \itemsep4pt
+   \item<3-> Instanz-/Klassen-Variable mit gleichem Be-\\
+   zeichner wie lokale Variable.
+   \item<4-> Der lokale Bezeichner überschattet den \say{globalen}.
+   \item<5-> So kann auch der Typ verändert werden.
+\end{itemize}\vspace*{-2.65\baselineskip}
+\begin{layout-imageonly}
+\begin{columns}[onlytextwidth,c]
+\column{.65\linewidth}
+\lstfs{9}\lstset{lineskip=3.25pt}\begin{uncoverenv}<6->\begin{plainjava}
+class LetThereBeDarkness {
+  static int happiness = 7;
+  public static void main(String[] args) {
+    System.out.println(happiness);
+    String happiness = "Maunz";
+    System.out.println(happiness);
+  }
+}
+\end{plainjava}
+\end{uncoverenv}
+\column{.35\linewidth}
+\begin{uncoverenv}<7-> Ausgabe:%
+\begin{void*}
+7
+Maunz!*\onslide<1->*!
+\end{void*}
+\end{uncoverenv}
+\end{columns}\vspace*{-2\baselineskip}
+\end{layout-imageonly}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<2->{\node[below left=.33cm,scale=1] at(current page.north east) {\usebox\pingushadow};}
+\end{tikzpicture}
+\end{frame}
+
+\ifshowtasks
+\SidebarTask{Was gibt das Programm aus?}
+\begin{frame}[c,fragile]{Programmausgaben}
+\lstfs{9}\begin{plainjava}
+!*\onslide<2->*!public class Example {
+!*\onslide<2->*!   public static int main;
+!*\onslide<2->*!   public static String a = "Hallo";
+!*\onslide<2->*!   public static void main(String[] args) {
+!*\onslide<2->*!      int a = 7;
+!*\onslide<2->*!      int b = 15;
+!*\onslide<2->*!      System.out.println(a + "; " + main); // i)
+!*\onslide<2->*!      {
+!*\onslide<2->*!         float main = 3 * b++;
+!*\onslide<2->*!         Example.a += b;
+!*\onslide<2->*!         System.out.println(b + "; " + main); // ii)
+!*\onslide<2->*!      }
+!*\onslide<2->*!      System.out.println(a + "; " + b + "; " + main); // iii)
+!*\onslide<2->*!      System.out.println(Example.a + "; " + Example.main); // iv)
+!*\onslide<2->*!   }
+!*\onslide<2->*!}!*\onslide<1->*!
+\end{plainjava}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+\SidebarSolution{Auflösung 4}
+\def\Show<#1>#2;{\onslide<#1->{{\only<#1|handout:1>{\colorlet{@}{gray}}\path[@]#2;}}}
+\def\ShowFull<#1>#2;{\onslide<#1-|handout:2>{{\only<#1>{\colorlet{@}{gray}}\path[@]#2;}}}
+\tikzset{every tikzmarknode/.append style={outer sep=2.25pt}}
+\begin{frame}[c,fragile]{Programmausgaben\rhead{II}}
+\lstfs{9}\begin{plainjava}
+public class !*\rlap{\tikzmarknode{Example}{\phantom{Example}}}*!Example {
+   public static int !*\rlap{\!\tikzmarknode{main}{\phantom{main}}}*!main;
+   public static String a!*\llap{\tikzmarknode{a}{\phantom{a}}}*! = "Hallo";
+   public static void main(String[] args) {
+      int !*\rlap{\tikzmarknode{a2}{\phantom{a}}}*!a = 7;
+      int !*\rlap{\tikzmarknode{b}{\phantom{b}}}*!b = 15;
+      System.out.println(!*\rlap{\tikzmarknode{ua}{\phantom{a}}}*!a + "; " + !*\rlap{\tikzmarknode{umain}{\phantom{main}}}*!main); // i)
+      {
+         float !*\rlap{\tikzmarknode{main2}{\phantom{main}}}*!main = 3 * !*\rlap{\tikzmarknode{ub}{\phantom{b}}}*!b++;
+         !*\rlap{\tikzmarknode{uExample}{\phantom{Example}}}*!Example.!*\rlap{\tikzmarknode{ua2}{\phantom{a}}}*!a += !*\rlap{\tikzmarknode{ub2}{\phantom{b}}}*!b;
+         System.out.println(!*\rlap{\tikzmarknode{ub3}{\phantom{b}}}*!b + "; " + !*\rlap{\tikzmarknode{umain2}{\phantom{main}}}*!main); // ii)
+      }
+      System.out.println(!*\rlap{\tikzmarknode{ua3}{\phantom{a}}}*!a + "; " + !*\rlap{\tikzmarknode{ub4}{\phantom{b}}}*!b + "; " + !*\rlap{\tikzmarknode{umain3}{\phantom{main}}}*!main); // iii)
+      System.out.println(!*\rlap{\tikzmarknode{uExample2}{\phantom{Example}}}*!Example.!*\rlap{\tikzmarknode{ua4}{\phantom{a}}}*!a + "; " + !*\rlap{\tikzmarknode{uExample3}{\phantom{Example}}}*!Example.!*\rlap{\tikzmarknode{umain4}{\phantom{main}}}*!main); // iv)
+   }
+}
+\end{plainjava}
+\begin{tikzpicture}[overlay,remember picture,every path/.append style={draw,gray,-Kite}]
+\colorlet{@}{lightgray!70!white}%
+\Show<2> (ua.west) to[out=165,in=-60] (pic cs:a2);
+\Show<3> (umain.north) to[bend right] (main.east);
+\Show<4> (ub.north) to[out=140,in=290] (b.south);
+\Show<5> (ua2.north) to[out=100,in=260] (a.south);
+\Show<6> (ub2.north west) to[out=140,in=290] (b.south);
+\Show<7> (ub3.north west) to[out=140,in=290] (b.south);
+\Show<8> (umain2.north) to[out=170,in=-30] ([xshift=-2pt]main2.south east);
+
+\ShowFull<9> (ua3.north) to[out=100,in=-30] ([xshift=-2pt]a2.east);
+\ShowFull<9> (ub4.north) to[out=100,in=-30] ([xshift=-2pt]b.east);
+\ShowFull<9> (umain3.north) to[out=100,in=-30] ([xshift=-2pt]main.east);
+
+\ShowFull<10> (ua4.north) to[out=100,in=-30] ([xshift=-2pt]a.east);
+\ShowFull<10> (umain4.north) to[out=100,in=-30] ([xshift=-2pt]main.east);
+\end{tikzpicture}%
+\end{frame}
+
+
+\begin{frame}[c,fragile]{Programmausgaben\rhead{III}}
+\vspace*{-\baselineskip}\begin{columns}[onlytextwidth,c]
+\column{.6\linewidth}
+\lstfs{4}\begin{plainjava}
+public class Example {
+   public static int main;
+   public static String a = "Hallo";
+   public static void main(String[] args) {
+      int a = 7;
+      int b = 15;
+      !*\tikzmark{li}*!System.out.println(a + "; " + main);!*\tikzmark{ri}*! // i)
+      {
+         float main = 3 * b++;
+         Example.a += b;
+         !*\tikzmark{lii}*!System.out.println(b + "; " + main);!*\tikzmark{rii}*! // ii)
+      }
+      !*\tikzmark{liii}*!System.out.println(a + "; " + b + "; " + main);!*\tikzmark{riii}*! // iii)
+      !*\tikzmark{liv}*!System.out.println(Example.a + "; " + Example.main);!*\tikzmark{riv}*! // iv)
+   }
+}
+\end{plainjava}
+\column{.4\linewidth}
+\small\updateitemize{iii)}%
+\begin{enumerate}
+   \itemsep6pt
+   \item<3->[i)] \bjava{7; 0}
+   \item<5->[ii)] \bjava{16; 45.0}
+   \item<7->[iii)] \bjava{7; 16; 0}
+   \item<9->[iv)] \bjava{Hallo16; 0}
+\end{enumerate}
+\end{columns}
+{\scriptsize\begin{enumerate}
+   \itemsep5pt
+   \item<4->[i)] \textit{\bjava{a = 7}, da lokales \bjava{a} das globale \bjava{Example.a} überschattet. \bjava{main = 0} durch \bjava{Example.main}, da Deklaration mit default \say{\bjava{0}} initialisierte.}
+   \item<6->[ii)] \textit{\bjava{b = 16}}, da lokal überschattet und durch \bjava{b++} in Initialisierung von lokalem \bjava{main}. \bjava{main = 45.0}, da \bjava{float} und Initialisierung \bjava{3 * 15} (Postinkrement).
+   \item<8->[iii)] \textit{\bjava{a = 7} mit lokalem \bjava{a}, \bjava{b = 16} durch Postinkrement, \bjava{main = 0} da Scope von lokalem \bjava{main} zuende, globales \bjava{Example.main} nicht mehr überschattet.}
+   \item<10->[iv)] \textit{\bjava{Example.a = "Hallo16"} durch Konkatenation \bjava{Example.a += 16}, \bjava{Example.main = 0} wie zuvor.}
+\end{enumerate}}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<2->{\fill[paletteB,opacity=.13,rounded corners=1pt] ([yshift=-1pt,xshift=-1pt]pic cs:li) rectangle ([yshift=3.5pt,xshift=1pt]pic cs:ri);}
+   \onslide<5->{\fill[paletteB,opacity=.13,rounded corners=1pt] ([yshift=-1pt,xshift=-1pt]pic cs:lii) rectangle ([yshift=3.5pt,xshift=1pt]pic cs:rii);}
+   \onslide<7->{\fill[paletteB,opacity=.13,rounded corners=1pt] ([yshift=-1pt,xshift=-1pt]pic cs:liii) rectangle ([yshift=3.5pt,xshift=1pt]pic cs:riii);}
+   \onslide<9->{\fill[paletteB,opacity=.13,rounded corners=1pt] ([yshift=-1pt,xshift=-1pt]pic cs:liv) rectangle ([yshift=3.5pt,xshift=1pt]pic cs:riv);}
+\end{tikzpicture}%
+\end{frame}
+\SidebarReset
+\fi
+
+\subsection{Fallunterscheidungen}
+\begin{frame}[c]{Fallunterscheidungen}
+\begin{itemize}[<+(1)->]
+   \itemsep12pt
+   \item Wenn \say{X} dann \say{Y} sonst \say{Z}
+\begin{center}
+   \bjava{if(X) Y else Z}
+\end{center}
+   \item Der Sonst-Fall (\bjava{ else Z}) ist optional.
+   \item Wir können \bjava{Y} und \bjava{Z} durch einen Code-Block aus mehreren Zeilen bestehen lassen.
+   \item Wir können die Ausdrücke verschachteln.
+\end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Fallunterscheidungen\rhead{II}}
+\begin{itemize}[<+(1)->]
+   \itemsep12pt
+   \item Es gibt eine ternäre Kurzform:
+\begin{center}
+   \bjava{X ? Y : Z}
+\end{center}
+   \item Der Sonst-Fall (\bjava{: Z}) ist \textsb{nicht} optional.
+   \item \bjava{Y} und \bjava{Z} müssen zu einem Wert evaluieren.
+   \item Wir können die Ausdrücke verschachteln.
+   \item Anders als \bjava{if}-\bjava{else} ist der Operator kein Statement! Wir müssen ihn also eingebettet verwenden.
+\end{itemize}
+\end{frame}
+
+\subsection{Recap}
+\def\mto{\ensuremath{\to}}
+\begin{frame}[c]{\paletteB{\sbfamily Kurzgesagt}\hfill Konstrukte}
+\begin{itemize}[<+(1)->]
+   \itemsep18pt
+   \item \textit{Implizit}:\hfill \dt{byte}~\mto~\dt{short}~\mto~\dt{int}~\mto~\dt{long}~\mto~\dt{float}~\mto~\dt{double}\\
+   Zahlen von klein zu groß, sowie: \dt{char}~\mto~\dt{int}
+   \item \textit{Präzedenzregeln}:\\
+   Post vor Prä, sonst wie Arithmetik \& Logik.
+   \item \textit{Default-Werte}:\\
+   Zahlen und Zeichen \bjava{0}, Boolean \bjava{false}, Rest \bjava{null}.
+   \item \textit{Überschatten}:\hfill Lokal über Global.
+\end{itemize}
+\LargeSide
+\end{frame}
+
+\section{Arrays \& Iteration}
+\subsection{Arrays}
+\begin{frame}[fragile]{Arrays}
+\begin{itemize}[<+(1)->]
+   \itemsep16pt
+   \item Sind komplexe Datentypen (\(\to\) Heap).
+   \item Jeder Datentyp kann ein (eindimensionales) Array werden:
+   \begin{center}
+      \bjava{int[] = new int[12];}
+   \end{center}
+   \item Mehrdimensionale Arrays, sind Arrays von Arrays von\ldots
+% \end{itemize}
+% \begin{columns}[onlytextwidth,c]
+% \column{.5\linewidth}
+% \begin{itemize}
+   \item Zugriff: \bjava{:lan:array:ran:[:lan:index:ran:]}\smallskip \begin{itemize}
+   \itemsep2.5pt
+   \item Liefert \bjava{:lan:index:ran:}-Element in \bjava{:lan:array:ran:}.
+   \item Wenn Array von Array, ist \bjava{:lan:array:ran:[:lan:index:ran:]} wieder ein Array.
+   \end{itemize}
+\end{itemize}
+% \end{columns}
+\end{frame}
+
+
+\ifshowtasks
+\SidebarTask{Kachelland}
+\begin{frame}[c,fragile]{Kachelland}
+\flushleft\footnotesize
+\onslide<2->{Sie befinden sich in Kachelland, welches auf einem schachbrettartigen Feld geplant wurde.
+Für diese Aufgabe betrachten wir die Fortbewegungskosten die ein Charakter auf den jeweiligen Feldern hat, wobei wir zwei Formen des Transports unterscheiden: ohne Hilfsmittel und im Boot.
+Auf diese Weise definieren wir für jede Kachel des zweidimensionalen Landes wie teuer es ist sie ohne Hilfsmittel, oder mit einem Boot zu überquere und geben eine Zeit in Minuten an.
+Dafür verwenden wir ein Array mit zwei Elementen: \bjava{cell = \{:lan:foot:ran:, :lan:boat:ran:\}}.
+Eine negative Zahl kennzeichnet, dass es unmöglich ist, das Feld mit dem Transportmittel zu überqueren.
+Konstruieren Sie die folgenden drei \bjava{static}-Methoden in Java: \begin{enumerate}
+   \item \bjava{int[][][] newLand(int width, int height)}
+   \item \bjava{boolean set(int[][][] board, int x, int y, int foot, int boat)}
+   \item \bjava{int costs(int[][][] board, int x, int y, boolean byBoat)}
+\end{enumerate}}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+\SidebarSolution{Auflösung 5}
+\begin{frame}[fragile,c]{Kachelland\rhead{II}}
+\begin{itemize}[<+(1)->]
+   \item Erschaffen wir ein neues Land:
+\begin{plainjava}
+!*\onslide<3->*!static int[][][] newLand(int width, int height) {
+!*\onslide<4->*!   int[][][] board = new int[height][width][2];
+!*\onslide<5->*!   for(int y = 0; y < height; y++) {
+!*\onslide<6->*!      for(int x = 0; x < width; x++) {
+!*\onslide<7->*!         board[y][x] = new int[]{-1, -1};
+!*\onslide<6->*!      }
+!*\onslide<5->*!   }
+!*\onslide<8->*!   return board;
+!*\onslide<3->*!}!*\onslide<1->*!
+\end{plainjava}
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+\only<2->{\node[above left,yshift=.75cm,xshift=-.25cm] at(current page.south east) {\footnotesize\faFileO~\textattachfile{TileCountry.java}{TileCountry.java}};}
+\end{tikzpicture}%
+\end{frame}
+
+\begin{frame}[fragile,c]{Kachelland\rhead{III}}
+\begin{itemize}[<+(1)->]
+   \item Setzen wir ein Feld:
+\begin{plainjava}
+!*\onslide<3->*!static boolean set(int[][][] board, int x, int y,
+!*\onslide<3->*!                    int foot, int boat) {
+!*\onslide<4->*!   if(y < 0 ||  x < 0 || // zu klein oder zu groß?
+!*\onslide<4->*!        y >= board.length || x >= board[y].length)
+!*\onslide<4->*!      return false;
+!*\onslide<5->*!   board[y][x] = new int[]{foot, boat};
+!*\onslide<6->*!   return true;
+!*\onslide<3->*!}!*\onslide<1->*!
+\end{plainjava}
+\end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,c]{Kachelland\rhead{IV}}
+\begin{itemize}[<+(1)->]
+   \item Kosten abfragen:
+\begin{plainjava}
+!*\onslide<3->*!static int costs(int[][][] board, int x, int y,
+!*\onslide<3->*!        boolean byBoat) {
+!*\onslide<4->*!   if(y < 0 ||  x < 0 || // zu klein oder zu groß?
+!*\onslide<4->*!        y >= board.length || x >= board[y].length)
+!*\onslide<4->*!      return -1;
+!*\onslide<5->*!   int[] cell = board[y][x];
+!*\onslide<6->*!   return byBoat ? cell[1] : cell[0];
+!*\onslide<3->*!}!*\onslide<1->*!
+\end{plainjava}
+\end{itemize}
+\end{frame}
+\SidebarReset
+\fi
+
+\subsection{Schleiflies}
+\begin{frame}[fragile]{Schleifen}
+   \vspace*{-.75\baselineskip}\begin{itemize}[<+(1)->]
+      \itemsep5pt
+      \item Drei Schleifenarten: \bjava{for}, \bjava{while}, \bjava{do}-\bjava{while}
+      \item Sie sind alle gleichmächtig\vspace*{-7.125\baselineskip}
+   \end{itemize}\lstfs{10}
+\begin{layout-imageonly}
+\begin{columns}[onlytextwidth,c]
+\column{.43\linewidth}
+\begin{uncoverenv}<4->
+\begin{plainjava}
+for(int i = 0; i < 8; i++) {
+   // Miau
+}
+\end{plainjava}
+\end{uncoverenv}
+\onslide<7->{\itshape Anzahl bekannt}
+\column{.25\linewidth}
+\begin{uncoverenv}<5->
+\begin{plainjava}
+int i = 3;
+while(i < 8) {
+   // Miau
+   i += 1;
+}
+\end{plainjava}
+\end{uncoverenv}
+\onslide<8->{\itshape Kein Maximum}
+\column{.245\linewidth}
+\begin{uncoverenv}<6->
+\begin{plainjava}
+int i = 3;
+do {
+   // Miau
+   i += 1;
+} while(i < 8);
+\end{plainjava}
+\end{uncoverenv}
+\onslide<9->{\itshape Mindestens 1}
+\end{columns}\vspace*{-6.4\baselineskip}
+\end{layout-imageonly}
+\begin{itemize}
+   \itemsep5pt
+   \item<10-> Bei \bjava{for} sind alle drei Blöcke optional
+   \item<11-> Bei \bjava{do}-\bjava{while} aufpassen: \begin{itemize}
+      \item<12-> Semikolon!
+      \item<13-> Wird es wirklich mindestens ein mal durchlaufen?
+   \end{itemize}
+\end{itemize}
+\end{frame}
+
+
+\ifshowtasks
+\SidebarTask{Schleifen umwandeln}
+\begin{frame}[fragile,c]{Schleifen umwandeln}
+\begin{uncoverenv}<2->
+\flushleft Im Folgenden finden Sie zwei Code-Ausschnitte. Schreiben Sie diese So um, dass Sie nur noch Schleifen der angegebenen Art verwenden, ohne dass sich das Verhalten des Codes verändert. Dabei repräsentiert \bjava{k} eine natürliche Zahl (exklusive \(0\)), welche Sie nicht kennen.
+\lstfs{8}\begin{columns}[onlytextwidth,T]
+\column{.65\linewidth}
+\begin{plainjava}
+// do-while
+int[] x = new int[]{17, 22, 13, 0};
+for(int i = 0; i < x.length - k; i += 1) {
+    System.out.println(x[i]);
+}
+\end{plainjava}
+\column{.35\linewidth}
+\begin{plainjava}
+// for
+int i = 1;
+do {
+    i *= k;
+    k -= i;
+} while(k >= 5);
+System.out.println(i);
+\end{plainjava}
+\end{columns}
+\end{uncoverenv}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+\SidebarSolution{Auflösung 6}
+\begin{frame}[fragile,c]{Schleifen umwandeln\rhead{II}}
+\begin{itemize}[<+(1)->]
+   \itemsep3pt
+   \item Aus \bjava{for} machen wir \bjava{do}-\bjava{while}
+   \item Wird es überhaupt einmal ausgeführt?
+\end{itemize}
+\lstfs{9}
+\begin{plainjava}
+!*\onslide<4->*!int[] x = new int[]{17, 22, 13, 0};
+!*\onslide<4->*!for(int i = 0; i < x.length - k; i += 1)
+!*\onslide<4->*!    System.out.println(x[i]);
+\end{plainjava}
+\vspace*{-1.4\baselineskip}\par\null\qquad\paletteB{\faCaretDown}
+\begin{plainjava}
+!*\onslide<5->*!int[] x = new int[]{17, 22, 13, 0};
+!*\onslide<6->*!if(x.length - k <= 0) // Sonst keine Ausführung
+!*\onslide<6->*!   return;
+!*\onslide<7->*!int i = 0; // Initialisierung
+!*\onslide<8->*!do { // normale Schleife
+!*\onslide<9->*!   System.out.println(x[i]);
+!*\onslide<9->*!   i++;
+!*\onslide<8->*!} while(i < x.length - k);
+\end{plainjava}
+\end{frame}
+
+\begin{frame}[fragile,c]{Schleifen umwandeln\rhead{III}}
+\begin{itemize}[<+(1)->]
+   \itemsep3pt
+   \item Aus \bjava{do}-\bjava{while} machen wir \bjava{for}
+   \item Wird es doch mindestens ein mal ausgeführt?
+   \item Brauchen wir die Variablen danach noch?
+\end{itemize}
+\lstfs{9}
+\begin{uncoverenv}<5->
+\begin{columns}[onlytextwidth,c]
+\column{.4\linewidth}
+\begin{plainjava}
+int i = 1;
+do {
+  i *= k;
+  k -= i;
+} while(k >= 5);
+System.out.println(i);
+\end{plainjava}
+\vspace*{-1.15\baselineskip}\par\null\qquad\paletteB{\faCaretRight}
+\column{.6\linewidth}
+\begin{plainjava}
+!*\onslide<6->*!int i = 1; // Bedarf nach Schleife
+!*\onslide<7->*!if(k < 5) { // Trotzdem ausführen?
+!*\onslide<8->*!   i *= k;
+!*\onslide<9->*!   // Wie Lebenserfahrung:
+!*\onslide<9->*!   k -= i; // theoretisch unnötig
+!*\onslide<7->*!} else {
+!*\onslide<10->*!   for(; k >= 5; k -= i)
+!*\onslide<11->*!      i *= k; // oder hier k -= i
+!*\onslide<7->*!}
+System.out.println(i);
+\end{plainjava}
+\end{columns}
+\end{uncoverenv}
+\end{frame}
+\SidebarReset
+\fi
+\subsection{Recap}
+\def\mto{\ensuremath{\to}}
+\begin{frame}[c]{\paletteB{\sbfamily Kurzgesagt}\hfill Arrays \& Iteration}
+\begin{itemize}[<+(1)->]
+   \itemsep18pt
+   \item Arrays sind komplexe Datentypen.
+   \item Mehrdimensionale Arrays sind eindimensionale Arrays von Eindimensionalen Arrays von\ldots
+   \item Die drei Schleifenarten sind gleichmächtig. \begin{itemize}
+      \item Maximum bekannt: \bjava{for}
+      \item Mindestens ein mal: \bjava{do}-\bjava{while}
+   \end{itemize}
+\end{itemize}
+\LargeSide
+\end{frame}
+
+\section{Unterprogramme}
+\subsection{Übersicht}
+\begin{frame}[fragile,c]{Unterprogramme}
+   \begin{itemize}[<+(1)->]
+      \itemsep11pt
+      \item Ein Unterprogramm lagert einen Teil des Programms aus.
+      \item In Java: \textsb{Methoden}\vspace*{-8\baselineskip}
+   \end{itemize}
+\begin{layout-imageonly}
+\begin{plainjava}
+!*\onslide<4->*!:lan:Modifikatoren:ran: :lan:Rückgabetyp:ran: :lan:Name:ran:(:lan:Parameterliste:ran:) {
+!*\onslide<4->*!   :lan:Inhalt:ran:
+!*\onslide<4->*!}
+\end{plainjava}\vspace*{-9\baselineskip}
+\end{layout-imageonly}
+   \begin{itemize}[<+(1)->]
+      \itemsep11pt
+      \item<5-> Modifikatoren beeinflussen beispielsweise die Sichtbarkeit.
+   \end{itemize}
+\end{frame}
+
+\begin{frame}[fragile,c]{Ein Beispiel}
+\lstfs{10}\SetupLstHl\begin{layout-imageonly}
+\begin{plainjava}
+!*\onslide<2->*!|ihl|:lan:Modifikatoren:ran: :lan:Rückgabetyp:ran: :lan:Name:ran:(:lan:Parameterliste:ran:) {|ihl|
+!*\onslide<2->*!|ihl|   :lan:Inhalt:ran:|ihl|
+!*\onslide<2->*!|ihl|}|ihl|
+
+
+
+
+!*\onslide<3->*!!*\tikzmark{mod-l}*!public static!*\tikzmark{mod-r}*! !*\tikzmark{String-l}*!String!*\tikzmark{String-r}*! !*\tikzmark{name-l}*!giveMeTheMiau!*\tikzmark{name-r}*!(!*\tikzmark{params-l}*!int times, double cuteness!*\tikzmark{params-r}*!) {
+!*\onslide<4->*!   !*\tikzmark{start}*!String out = "";
+!*\onslide<4->*!   for(int i = 0; i < times * cuteness; i++) {
+!*\onslide<4->*!      out += "Miau ";
+!*\onslide<4->*!   }
+!*\onslide<4->*!   !*\tikzmark{end}*!return out;
+!*\onslide<3->*!}
+\end{plainjava}
+\end{layout-imageonly}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<5->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:mod-l) -- ([yshift=8pt]pic cs:mod-r) node[pos=.5,above=2pt] {\strut Modifikatoren};}
+   \onslide<6->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:String-l) -- ([yshift=8pt]pic cs:String-r) node[pos=.5,above=2pt] {\strut R-Typ};}
+   \onslide<7->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:name-l) -- ([yshift=8pt]pic cs:name-r) node[pos=.5,above=2pt] {\strut Name};}
+   \onslide<8->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:params-l) -- ([yshift=8pt]pic cs:params-r) node[pos=.5,above=2pt] {\strut Parameterliste};}
+   \onslide<9->{
+      \node[above left=.5cm,draw=gray,very thick,inner sep=5pt,rounded corners=1.75pt,xshift=-.25cm,yshift=.65cm,align=left] at(current page.south east) {\textsb{Signatur}: Name \& Parametertypen\\\lstfs{11}\bjava{giveMeTheMiau(int, double)}};
+   }
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile,c]{Rückgabewert}
+   \begin{itemize}[<+(1)->]
+      \itemsep11pt
+      \item \bjava{void} kennzeichnet, dass die Methode nichts zurückgibt.
+      \item Sonst: jeder Ausführungspfad muss einen Wert vom angegebenen Typ liefern.
+   \end{itemize}
+\begin{plainjava}
+!*\onslide<4->*!public static int iHaveCatPics(String where) {
+!*\onslide<5->*!   if(where.equals("MIAFF"))
+!*\onslide<5->*!      return 42;
+!*\onslide<4->*!}
+\end{plainjava}
+   \begin{itemize}
+      \item<6-> Verboten, da nicht jeder Ausführungspfad \bjava{int} liefert.
+   \end{itemize}
+\end{frame}
+
+\subsection{Methodenaufruf}
+\begin{frame}[fragile,c]{Methodenaufruf}
+   \begin{itemize}[<+(1)->]
+      \itemsep11pt
+      \item Methoden mit \bjava{static} gehören der Klasse. \begin{itemize}
+         \item Wir benötigen kein Objekt.
+         \item In ihnen \say{gibt} es \textit{kein} \bjava{this}.
+      \end{itemize}
+      \item Java sucht beim Aufruf eine Methode mit entsprechender Signatur. \begin{itemize}
+         \item Implizite Typkonvertierung!
+      \end{itemize}
+      \item \textsb{Überladung}: Gleicher Name, unterschiedliche Signatur.
+   \end{itemize}
+\end{frame}
+
+\newsavebox\agentpingu
+\savebox\agentpingu{\tikz\pingu[cloak=pingu@black,sunglasses,tie=pingu@black,eyes angry,glasses opacity=.876];}
+\begin{frame}[fragile,c]{Call-By \& Seiteneffekte}
+   \vspace*{.75\baselineskip}\begin{itemize}
+      \itemsep11pt
+      \item<3-> Aufruf: \say{Stack-Einträge} der Parameter werden \textit{kopiert}.
+      \begin{itemize}
+         \item<4-> Primitive Datentypen:\hfill call-by-\textit{value}
+         \item<5-> Komplexe Datentypen:\hfill call-by-\textit{reference}
+      \end{itemize}
+      \item<6-> Genau genommen hat Java nur \say{call-by-value}
+      \item<7-> \textsb{Seiteneffekt}: Wenn nach dem Aufruf mehr als der Rückgabewert verbleibt. \begin{itemize}
+         \item<8-> Instanzvariable verändert sich.
+         \item<9-> Durch Referenz wird ein Array modifiziert.
+         % \item<10-> Es gibt eine Ausgabe in der Kommandozeile.
+         \item<10-> Eine Nachricht fliegt durchs Internet.
+         \item<11-> \ldots
+      \end{itemize}
+   \end{itemize}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<2->{\node[below left=.33cm,scale=.6] (agent) at(current page.north east) {\usebox\agentpingu};
+   \node[left,align=right,font=\footnotesize] at(agent.west) {You can call me pingu.\\Cute pingu!};}
+\end{tikzpicture}
+\end{frame}
+
+\begin{frame}[fragile,c]{Varargs}
+   \begin{itemize}[<+(1)->]
+      \itemsep11pt
+      \item Der letzte Parameter darf in Java ein \say{Vararg} sein.
+      \item Drei Punkte: erlaubt beliebig viele Argumente des Typs.
+      \item Kann in der Methode als Array verwendet werden.\vspace*{-2\baselineskip}
+   \end{itemize}
+\begin{layout-imageonly}
+\begin{plainjava}
+!*\onslide<5->*!static double[] funFunFun(int factor, double... arguments) {
+!*\onslide<6->*!   for(int i = 0; i < arguments.length; i++) {
+!*\onslide<6->*!      arguments[i] *= factor;
+!*\onslide<6->*!   }
+!*\onslide<7->*!   return arguments;
+!*\onslide<5->*!}
+\end{plainjava}
+\end{layout-imageonly}
+\end{frame}
+
+\ifshowtasks
+\SidebarTask{Methodenausgaben}
+\begin{frame}[fragile,c]{Methodenausgaben}
+\flushleft\onslide<2->{Betrachten Sie das Java-Programm auf dem Blatt und geben Sie für die kommentierten Zeilen jeweils die Werte der Variablen \bjava{a}, \bjava{b} und \bjava{c} an (tragen Sie diese in die entsprechende Box \smash{\tikz[baseline=.135cm]\draw[gray,rounded corners=1pt](0,0) rectangle (.9cm,.35cm+.33\baselineskip);} ein).
+Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten Java-Mechanismen. Relevant sind: i)~Überladung, ii)~Seiteneffekt, iii)~Überschattung und iv)~Standardwerte. Sie dürfen in ihrer Skizzierung die römischen Zahlen verwenden um auf die Mechanismen hinzuweisen.}\par
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+\SidebarSolution{Auflösung 7}
+\begin{frame}[fragile,c]{Methodenausgaben\rhead{II}}
+\SetupLstHl
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\lstfs{7}\begin{plainjava}
+!*\onslide<2->*!|ihl|public class MethodExample {|ihl|
+!*\onslide<2->*!   |ihl|public static char a;|ihl|
+!*\onslide<2->*!   |ihl|public static int b = 5;|ihl|
+!*\onslide<2->*!   |ihl|public static int c = 3;|ihl|
+!*\onslide<2->*!
+!*\onslide<2->*!   static int x(int a) |ihl|{ ... }|ihl|
+!*\onslide<2->*!   static int x(char[] b) |ihl|{ ... }|ihl|
+!*\onslide<2->*!   static String x() |ihl|{ ... }|ihl|
+!*\onslide<2->*!   |ihl|public static void main(...) {|ihl|
+!*\onslide<2->*!      // 1)
+!*\onslide<2->*!      ...
+!*\onslide<2->*!   |ihl|}|ihl|
+!*\onslide<2->*!}!*\onslide<1->*!
+\end{plainjava}
+\column{.5\linewidth}
+\onslide<3->{Allgemein:}
+\begin{itemize}
+   \itemsep8pt
+   \item<4-> \bjava{x} wird Überladen und präsentiert drei Signaturen:
+      \onslide<5->{\bjava{x(int)}, \bjava{x(char[])} und \bjava{x()}.}
+   \item<6-> Nur \bjava{x(char[])} hat Seiteneffekte. \begin{itemize}
+      \item<7-> In \bjava{x(int)} überschattet der Parameter das globale \bjava{a}.
+      \item<8-> In \bjava{x(char[])} wird \bjava{a} verändert.
+      \item<9-> In \bjava{x()} wird \bjava{b} überschattet.
+   \end{itemize}
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile,c]{Methodenausgaben\rhead{III}}
+\SetupLstHl
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\lstfs{7}\begin{plainjava}
+|ihl|public class MethodExample {|ihl|
+   public static char a;
+   public static int b = 5;
+   public static int c = 3;
+
+   |ihl|static int x(int a) { ... }|ihl|
+   |ihl|static int x(char[] b) { ... }|ihl|
+   |ihl|static String x() { ... }|ihl|
+   |ihl|public static void main(...) {|ihl|
+      // 1)
+      |ihl|...|ihl|
+   |ihl|}|ihl|
+}!*\onslide<1->*!
+\end{plainjava}
+\column{.5\linewidth}
+\onslide<2->{Werte:}
+\begin{itemize}
+   \itemsep8pt
+   \item<3-> \bjava{a} ist \bjava{0} (zugehöriges Unicode-Symbol \T{NULL}) da Java einer Klassenvariable vom Typ \bjava{char} diesen Wert zuweist.
+   \item<4-> \bjava{b} ist \bjava{5} und \bjava{c} ist \bjava{3} da die Klassenvariablen so initialisiert werden.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile,c]{Methodenausgaben\rhead{IV}}
+\SetupLstHl
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\lstfs{7}\begin{plainjava}
+|ihl|public class MethodExample {|ihl|
+   public static char a;
+   public static int b = 5;
+   public static int c = 3;
+
+   |ihl|static int x(int a) { ... }|ihl|
+   |ihl|static int x(char[] b) { ... }|ihl|
+   static String x() {
+      String b = "Hallo";
+      return b;
+   }
+   |ihl|public static void main(...) {|ihl|
+      |ihl|...|ihl|
+      String c = x();
+      // 2)
+      |ihl|...|ihl|
+   |ihl|}|ihl|
+}!*\onslide<1->*!
+\end{plainjava}
+\column{.5\linewidth}
+\onslide<2->{Werte:}
+\begin{itemize}
+   \itemsep8pt
+   \item<3-> \bjava{a} ist \bjava{0} es bleibt durch den Aufruf von \bjava{c()} unverändert.
+   \item<4-> \bjava{b} ist \bjava{5} also ebenfalls unverändert. \bjava{c()} erzeugt ein neues \bjava{b}, welches das globale überschattet.
+   \item<5-> \bjava{c} ist \bjava{\"Hallo\"}, das lokale \bjava{c} überschattet das globale. Der Wert ergibt sich durch \bjava{x()} welches das globale \bjava{b} überschattet.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile,c]{Methodenausgaben\rhead{V}}
+\SetupLstHl
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\lstfs{7}\begin{plainjava}
+|ihl|public class MethodExample {|ihl|
+   public static char a;
+   public static int b = 5;
+   public static int c = 3;
+
+   |ihl|static int x(int a) { ... }|ihl|
+   static int x(char[] b) {
+      a += b[1];
+      return b[0];
+   }
+   |ihl|static String x() { ... }|ihl|
+   |ihl|public static void main(...) {|ihl|
+      |ihl|...|ihl|
+      x(c.toCharArray());
+      // 3)
+      |ihl|...|ihl|
+   |ihl|}|ihl|
+}!*\onslide<1->*!
+\end{plainjava}
+\column{.5\linewidth}
+\onslide<2->{Werte:}
+\begin{itemize}
+   \itemsep8pt
+   \item<3-> Durch \bjava{c.toCharArray()} wird \bjava{x(char[])} aufgerufen. \bjava{char[] b} überschattet das globale.
+   \item<4-> \bjava{a} wird durch \bjava{a += b[1]} zu \bjava{'a'} (\(97\)) geändert.
+   \item<5-> \bjava{b} ist unverändert \bjava{5}, da es in \bjava{x(char[])} überschattet wird.
+   \item<6-> \bjava{c} ist \bjava{\"Hallo\"}, wie zuvor.
+\end{itemize}
+\end{columns}
+\end{frame}
+
+\begin{frame}[fragile,c]{Methodenausgaben\rhead{VI}}
+\SetupLstHl
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\lstfs{7}\begin{plainjava}
+|ihl|public class MethodExample {|ihl|
+   public static char a;
+   public static int b = 5;
+   public static int c = 3;
+
+   static int x(int a) {
+      a = a * a;
+      return b + 2;
+   }
+   |ihl|static int x(char[] b) { ... }|ihl|
+   |ihl|static String x() { ... }|ihl|
+   |ihl|public static void main(...) {|ihl|
+      |ihl|...|ihl|
+      int b = x(a);
+      // 4)
+   |ihl|}|ihl|
+}!*\onslide<1->*!
+\end{plainjava}
+\column{.5\linewidth}
+\onslide<2->{Werte:}
+\begin{itemize}
+   \itemsep8pt
+   \item<3-> Es wird \bjava{x(int)} aufgerufen.
+   \item<4-> \bjava{a} bleibt unverändert \bjava{'a'} (\(97\)), da der Parameter in \bjava{x(int)} das globale überschattet.
+   \item<5-> \bjava{b} ist \bjava{7}, da das lokale nun das globale überschattet und den Wert \bjava{b + 2} erhält.
+   \item<6-> \bjava{c} ist \bjava{\"Hallo\"}, wie zuvor.
+\end{itemize}
+\end{columns}
+\end{frame}
+\SidebarReset
+\fi
+
+
+\ifshowtasks
+\SidebarTask{Reverse}
+\begin{frame}[fragile,c]{Reverse}
+\flushleft\onslide<2->{Schreiben Sie eine Methode \bjava{static void reverse} \bjava{(int[] arr)} welche das übergebene Array umdreht, sodass das erste Elemente nun an letzter Stelle steht, das zweite an vorletzter Stelle,~\ldots\ und das letzte Element nun an erster Stelle steht.\par}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+\SidebarSolution{Auflösung 8}
+\begin{frame}[fragile,c]{Reverse\rhead{II}}
+\begin{plainjava}
+!*\onslide<5->*!static void swap(int[] arr, int i, int j) {
+!*\onslide<6->*!   int tmp = arr[i];
+!*\onslide<6->*!   arr[i] = arr[j];
+!*\onslide<6->*!   arr[j] = tmp;
+!*\onslide<5->*!}
+!*\onslide<2->*!
+!*\onslide<2->*!static void reverse(int[] arr) {
+!*\onslide<3->*!   for(int i = 0; i < arr.length / 2; i++) {
+!*\onslide<4->*!      swap(arr, i, arr.length - i - 1);
+!*\onslide<3->*!   }
+!*\onslide<2->*!}
+\end{plainjava}
+\end{frame}
+\SidebarReset
+\fi
+
+\subsection{Recap}
+\begin{frame}[c]{\paletteB{\sbfamily Kurzgesagt}\hfill Unterprogramme}
+\begin{itemize}[<+(1)->]
+   \itemsep18pt
+   \item \textit{Überladung:}\hfill Gleicher Name, andere Signatur. \begin{itemize}
+      \item \textit{Signatur:} Name \& Parametertypliste
+      \item Müssen zudem in selber Klasse sein (später: Vererbung)
+   \end{itemize}
+   \item Beim Aufruf macht Java call-by-value: \begin{itemize}
+      \item Alle Parameter werden kopiert (Stack).
+   \end{itemize}
+\end{itemize}
+\LargeSide
+\end{frame}
+
+
+\section{OOP}
+\subsection{Allgemein}
+\SidebarRaw{\downsize{15em}{\begin{tikzpicture}
+   \draw[paletteB,fill=shadeB] (0,0) circle[radius=15mm];
+   \draw (0,0) circle[radius=30mm];
+   \foreach \a in {0,30,...,359} {
+      \draw (\a:15mm) -- (\a:30mm);
+   }
+\end{tikzpicture}}}
+\begin{frame}{Allgemein}
+   \begin{itemize}[<+(1)->]
+      \itemsep14pt
+      \item Objekte abstrahieren Daten und Verhalten.
+      \item Ermöglicht Wiederverwendung von Komponenten.
+      \item Klassen definieren eine Blaupause: \begin{itemize}
+         \item Welche Eigenschaften haben die Daten? \hfill \textsb{Attribute}
+         \item Was kann mit den Daten gemacht werden? \hfill \textsb{Methoden}
+      \end{itemize}
+      \item Die Attribute definieren den Zustand
+      \item Die Methoden definieren das Verhalten
+   \end{itemize}
+\end{frame}
+\SidebarReset
+
+\def\Card#1#2{\begin{tikzpicture}
+   \node (udbert) at(0,0) {\bjava{Penguin #1}};
+   \node[below right,inner sep=0pt,xshift=4pt,align=left,draw,rounded corners=1pt] at (udbert.south west) {\begin{tabular}{l|p{4em}}
+      #2
+   \end{tabular}};
+\end{tikzpicture}}
+
+\newsavebox\pingunote
+\savebox\pingunote{\tikz\pingu[left wing wave,santa hat,cloak=paletteB!80!pingu@white,cloak cap=!hide,eyes wink,santa beard];}
+\begin{frame}[fragile,c]{Klasse vs. Objekt}
+   \begin{itemize}[<+(1)->]
+      \itemsep7pt
+      \item Klasse ist eine Blaupause
+      \item Objekte weisen Attribute konkrete Werte zu
+   \end{itemize}\vspace*{-1\baselineskip}
+\begin{layout-imageonly}
+\begin{columns}[onlytextwidth,c]
+\column{.475\linewidth}\SetupLstHl\lstfs{10}
+\begin{plainjava}
+!*\onslide<4->*!class Penguin {
+!*\onslide<4->*!   double cute;
+!*\onslide<4->*!   int age;
+!*\onslide<4->*!   String name;
+!*\onslide<4->*!
+!*\onslide<4->*!   |ihl|void walk(int snow) { ... }|ihl|
+!*\onslide<4->*!   |ihl|void peep() { ... }|ihl|
+!*\onslide<4->*!   |ihl|...|ihl|
+!*\onslide<4->*!}
+\end{plainjava}
+\column{.525\linewidth}
+\def\arraystretch{1.125}%
+\resizebox\linewidth!{\onslide<5->{\Card{udbert}{cute & \(5.7\)\\\hline
+age & \(12\)\\\hline
+name & \say{Udi}}}~~\onslide<6->{\Card{josie}{cute & \(6.1\)\\\hline
+age & \(10\)\\\hline
+name & \say{Josie}}~}}\\[5pt]\resizebox\linewidth!{\onslide<8->{\Card{peter}{cute & \(6\)\\\hline
+age & \(10\)\\\hline
+name & \say{Petaa}}}~~\onslide<7->{\Card{saphira}{cute & \(8\)\\\hline
+age & \(11\)\\\hline
+name & \say{Saph}}}~}
+\end{columns}
+\end{layout-imageonly}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<9->{\node[below left=-2cm] (pingu) at(current page.north east) {\rotatebox{140}{\usebox\pingunote}};
+   \node[below left,yshift=.65cm,xshift=.75cm,font=\footnotesize,align=right] at(pingu.west) {Jedes Objekt erzeugt\\alle Instanzvariablen \say{für sich}\\allein.};}
+\end{tikzpicture}
+\end{frame}
+
+\subsection{Klasseneigenschaften}
+\begin{frame}{Der Konstruktor}
+\begin{itemize}[<+(1)->]
+   \itemsep6pt
+   \item Erlaubt für Werte beim Erzeugen (\say{initialer Zustand}).
+   \item Ein Konstruktor ist \textit{keine} Methode.\vspace*{-\topsep}
+\end{itemize}
+\begin{multicols}{2}
+\begin{itemize}[<+(1)->]
+   \item Unterschiede: \begin{itemize}
+      \item Muss heißen wie die Klasse
+      \item Hat keinen Rückgabetyp
+      \item Kann nichts zurückgeben
+      \item Benötigt \bjava{new} für Aufruf
+      % \item Erzeugt \emph{immer} ein Objekt oder einen Fehler.
+      \item \ldots
+   \end{itemize}
+   \item Gemeinsamkeiten:
+   \begin{itemize}
+      \item Hat Parameter
+      \item Kann überladen werden
+      \item Kann Methoden aufrufen
+      \item Kann Objekte erzeugen
+      \item \ldots
+   \end{itemize}
+\end{itemize}
+\end{multicols}
+\begin{itemize}[<+(1)->]
+   \item Java erzeugt \textit{genau dann} einen leeren Konstruktor, wenn kein expliziter Konstruktor existiert.
+\end{itemize}
+% Keine Methode, Überladen, Erstellung
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<17->{\node[below left=.5cm,align=right] at(current page.north east) {\textsb{Instanziierung:} Erzeugen\\eines neuen Objektes.};}
+\end{tikzpicture}
+\end{frame}
+
+
+\begin{frame}[fragile,c]{Der Standardkonstruktor}
+\begin{layout-imageonly}
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\begin{plainjava}
+!*\onslide<2->*!public class Supa {
+!*\onslide<2->*!   int x;
+!*\onslide<2->*!}
+\end{plainjava}
+\column{.5\linewidth}
+\begin{itemize}
+   \item<3-> \cjava{Supa s = new Supa();}\smallskip\\
+   \onslide<4->{Erlaubt, durch den leeren Standardkonstruktor.
+   \bjava{s.x} hat den Standardwert \bjava{0}.}
+\end{itemize}
+\end{columns}
+\begin{columns}[onlytextwidth,c]
+\column{.5\linewidth}
+\begin{plainjava}
+!*\onslide<5->*!public class Mega {
+!*\onslide<5->*!   String name;
+!*\onslide<5->*!   public Mega(String name) {
+!*\onslide<5->*!     this.name = name;
+!*\onslide<5->*!  }
+!*\onslide<5->*!}
+\end{plainjava}
+\column{.5\linewidth}
+\begin{itemize}
+   \item<6-> \cjava{Mega m = new Mega();}\smallskip\\
+   \onslide<7->{Nicht erlaubt. Existiert ein expliziter Konstruktor, erstellt Java keinen leeren mehr!}
+   \item<8-> \cjava{Mega x = new Mega(\"Huhu\");}\smallskip\\
+   \onslide<9->{Erlaubt. \bjava{x.name} ist \bjava{\"Huhu\"}.}
+\end{itemize}
+\end{columns}
+\end{layout-imageonly}
+\end{frame}
+
+
+\begin{frame}[fragile,c]{Einen Konstruktor überladen}
+\begin{itemize}[<+(1)->]
+   \itemsep3.5pt
+   % \item Hauptgrund: Standardwerte für initialen Zustand.
+   \item Konstruktoren können einander mit \bjava{this} aufrufen. Dies muss dann das \emph{erste} Statement sein. Keine Rekursion.
+\end{itemize}\vspace*{-.85\baselineskip}
+\begin{layout-imageonly}
+\begingroup\lstfs{9}\begin{multicols}{2}
+\begin{plainjava}
+!*\onslide<3->*!public class Car {
+!*\onslide<3->*!   int topSpeed;
+!*\onslide<3->*!   final boolean pengu;
+!*\onslide<4->*!   public !*\tikzmark{Car-2l}*!Car(int top, boolean p)!*\tikzmark{Car-2r}*! {
+!*\onslide<4->*!      this.topSpeed = top;
+!*\onslide<4->*!      this.pengu = p;
+!*\onslide<4->*!   }
+!*\onslide<3->*!
+!*\onslide<5->*!   public !*\tikzmark{Car-1l}*!Car!*\tikzmark{Car-1r}*!(int top) {
+!*\onslide<5->*!      !*\tikzmark{this-2l}*!this(top, true);!*\tikzmark{this-2r}*!
+!*\onslide<5->*!      System.out.println("Piep");
+!*\onslide<5->*!   }
+!*\onslide<3->*!
+!*\onslide<6->*!   public !*\tikzmark{Car-l}*!Car()!*\tikzmark{Car-r}*! { !*\tikzmark{this-1l}*!this(20);!*\tikzmark{this-1r}*! }
+!*\onslide<3->*!}
+\end{plainjava}
+\end{multicols}\endgroup
+\begin{itemize}
+\itemsep3.5pt
+\item<9-> \cjava{new Car()}\,: \onslide<10->{\bjava{topSpeed} ist \bjava{20}, \bjava{pengu} ist \bjava{true}. Mit Piep!}
+\item<11-> \cjava{new Car(14)}\,: \onslide<12->{\bjava{topSpeed} ist \bjava{14}, \bjava{pengu} ist \bjava{true}. Mit Piep!}
+\item<13-> \cjava{new Car(2, false)}\,: \onslide<14->{\bjava{topSpeed} ist \bjava{2}, \bjava{pengu} ist \bjava{False}. Kein Piep!}
+\end{itemize}
+\end{layout-imageonly}
+\begin{tikzpicture}[overlay,remember picture]
+   \onslide<7->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:this-1l) -- ([yshift=8pt]pic cs:this-1r) node[pos=.5,above=3pt] {\footnotesize\bjava{Car(int)}};}
+   \onslide<8->{\draw[gray,-Kite] ([yshift=3pt]pic cs:this-2l) to[out=180,in=20] ([yshift=10pt,xshift=-18pt]pic cs:Car-2r);}
+\end{tikzpicture}
+\end{frame}
+
+
+% \begin{frame}{Konstanten}
+% final im Konstruktor
+% \end{frame}
+
+\begin{frame}[c]{Static vs. Non-Static}
+   \begin{itemize}[<+(1)->]
+      \itemsep11pt
+      \item Statische Variablen \& Methoden sind an die Klasse gebunden. \begin{itemize}
+         \item Kein Objekt notwendig um Sie aufzurufen/abzugreifen.
+         \item Keine Instanz- sondern Klassenvariablen.
+      \end{itemize}
+      \item Die Frage lautet: Ist diese Eigenschaft allen Objekten gemein?
+   \end{itemize}
+\end{frame}
+
+
+\ifshowtasks
+\SidebarTask{Kameraszenario}
+\begin{frame}[fragile,c]{Kameraszenario}
+\onslide<2->{\footnotesize\flushleft Sie sehen das Grundgerüst einer Kameraklasse. Bearbeiten Sie die folgenden beiden Teilaufgaben,
+welche aufeinander aufbauen. Sie dürfen den Fehlermechanismus von Java nicht verwenden.
+\begin{enumerate}
+    \item Schreiben Sie einen leeren Konstruktor, welcher die von Java zugewiesenen Standardwerte explizit initialisiert. Dieser Konstruktor soll nicht von Code abseits der \bjava{Camera}-Klasse aufrufbar sein und verhindern, dass so weitere Kamera-Objekte erstellt werden können.
+    \item Erweitern Sie die Klasse nun in sofern, dass es immer maximal fünf Kamera-Objekte gibt, welche durch \bjava{get(int)} durch eine Zahl \(x \in \{0, 1, 2, 3, 4\}\) abgefragt werden können. Dabei soll ein Kamera-Objekt erst (mit ihrem vorher erzeugten Konstruktor) erzeugt werden, wenn es durch die Zahl angefragt wird. Weiter sollen Folgeanfragen mit der Zahl dasselbe Objekt zurückliefern. Geben Sie für \(x < 0\) und \(x \geq 5\) den Wert \bjava{null} zurück.
+\end{enumerate}}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+
+\SidebarSolution{Auflösung 9}
+\begin{frame}[fragile,c]{Der Konstruktor}
+\begin{plainjava}
+!*\onslide<2->*!private Camera() {
+!*\onslide<3->*!   x = y = z = 0;
+!*\onslide<3->*!   recording = false;
+!*\onslide<2->*!}
+\end{plainjava}\medskip
+\begin{itemize}
+   \item<4-> \bjava{private}: Damit von außen nicht zugreifbar.
+   \item<5-> \bjava{x = y = z = 0} als Kurzform für \bjava{x = 0}, \bjava{y = 0} und \bjava{z = 0}.
+\end{itemize}
+\begin{tikzpicture}[remember picture,overlay]
+   \only<6->{\node[below left=.5cm] at(current page.north east) {\footnotesize\faFileO~\textattachfile{Camera.java}{Camera.java}};}
+\end{tikzpicture}%
+\end{frame}
+
+\begin{frame}[fragile,c]{Nur fünf Kameras}
+\begin{plainjava}
+!*\onslide<2->*!private static Camera[] cameras = new Camera[5];
+!*\onslide<2->*!
+!*\onslide<3->*!public static Camera get(int n) {
+!*\onslide<4->*!   if(n < 0 || n >= 5) return null;
+!*\onslide<5->*!   if(cameras[n] == null)
+!*\onslide<5->*!      cameras[n] = new Camera();
+!*\onslide<6->*!   return cameras[n];
+!*\onslide<3->*!}
+\end{plainjava}
+\begin{itemize}
+   \itemsep6pt
+   \item<7-> Das Array kontrolliert den Pool verfügbarer Kameras.
+   \item<8-> Statische Erzeuger-Methoden erlauben mehr Kontrolle.
+\end{itemize}
+\end{frame}
+\SidebarReset
+\fi
+
+% \subsection{Mehrere Klassen}
+% \begin{frame}{Sichtbarkeiten}
+
+% \end{frame}
+
+% \begin{frame}{Interaktion von Klassen}
+
+% \end{frame}
+
+\subsection{Sichtbarkeiten \& Gültigkeiten}
+\begin{frame}{Sichtbarkeit \& Gültigkeit}
+   \begin{itemize}[<+(1)->]
+      \itemsep14pt
+      \item Klassen, Methoden \& Attribute haben \textsb{Sichtbarkeiten} (Scope). \begin{itemize}
+         \item Sie können nur verwendet werden, wo sie sichtbar sind.
+         \item Diese Sichtbarkeit wird durch \bjava{public}, \bjava{private},~\ldots\ kontrolliert.
+      \end{itemize}
+      \item Daten (Variablen,~\ldots) haben einen \textsb{Gültigkeitsbereich}. \begin{itemize}
+         \item Solange sie vom Stack aus von Java erreichbar sind.
+      \end{itemize}
+      \item Sichtbarkeits- \& Gültigkeitsbereiche überschneiden sich.
+      \item Eine Variable kann z.B. gültig, aber gerade durch Überschattung nicht sichtbar sein.
+   \end{itemize}
+   % Pakete, dann Sichtbarkeiten und Scopes dann Aufagbe
+\end{frame}
+
+\begin{frame}[c]{Gruppierung}
+   \begin{itemize}[<+(1)->]
+      \itemsep14pt
+      \item Java nutzt \textsb{Packages} als Namensräume \begin{itemize}
+         \item Ordner der dann alle zugehorigen Java-Dateien enthält.
+         \item Können über \bjava{import <pack:c:age>;} sichtbar gemacht werden.
+         \item Dabei wird \bjava{java.lang} immer importiert.
+      \end{itemize}
+      \item Sichtbarkeiten interagieren auch mit Vererbungs-Mechanismen.
+   \end{itemize}
+   % Pakete, dann Sichtbarkeiten und Scopes dann Aufagbe
+\end{frame}
+
+
+\begin{frame}{Scopes}
+   \begin{itemize}[<+(1)->]
+      \itemsep6pt
+      \item Java nutzt \textsb{Packages} als Namensräume \begin{itemize}
+         \item Ordner der dann alle zugehorigen Java-Dateien enthält.
+         \item Können über \bjava{import <package>;} sichtbar gemacht werden.
+         \item Dabei wird \bjava{java.lang} immer importiert.
+      \end{itemize}
+      \item Sichtbarkeiten interagieren auch mit Verebung.
+      \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{itemize}
+         \item \textit{private:} Nur innerhalb der Klasse.
+         \item \textit{protected:} Im gesamten Paket sowie allen Unterklassen.
+         \item \textit{public:} Überall sichtbar wo Paket sichtbar.
+         \item \textit{\say{default}:} Überall im Paket.
+     \end{itemize}
+     \item Hinweis: Objekte einer Klasse können auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
+   \end{itemize}
+   % Pakete, dann Sichtbarkeiten und Scopes dann Aufagbe
+\end{frame}
+
+
+\begin{frame}[fragile,c]{Ein Scope Beispiel}
+   \small\begin{itemize}[<+(1)->]
+      \itemsep6pt
+   \item Es gibt vier Geltungsbereiche (\textit{engl.} scopes) für Variablen.\vspace*{-8\baselineskip}
+\begin{layout-imageonly}\lstfs{10}
+\begin{plainjava}[language=xJava]
+!*\onslide<3->*!|zws|public|zws| class Pinguin { // !*\solGet{comments}{\textbf{1.}}*! global
+!*\onslide<4->*!    !**!|zws|private|zws| int sozialversicherungsnummer; // !*\solGet{comments}{\textbf{2.}}*! Klasse
+!*\onslide<5->*!    !**!|zws|protected|zws| int watschelIndex; // !*\solGet{comments}{\textbf{3.}}*! geschützt
+!*\onslide<6->*!    !**!|zws|public|zws| void watschel() { /* ... */ } // !*\solGet{comments}{\textbf{4.}}*! (erneut: global)
+!*\onslide<7->*!    void piepsen() { /* ... */ } // !*\solGet{comments}{\textbf{5.}}*! Standard: Paket
+!*\onslide<3->*!}
+\end{plainjava}\vspace*{-8.66\baselineskip}
+\end{layout-imageonly}
+\item<8-> Die Klasse \bjava{Tiger} sei im selben, \bjava{Auto} sei in einem anderen Paket, \bjava{Felspingu} erbe von \bjava{Pinguin} aber sei in einem anderem Paket: \medskip\par
+\hspace*{-5em}\hfill\onslide<9->{\def\y{\faCheckSquareO}\def\n{\hspace*{-1pt}\faSquareO}\scriptsize\begin{minipage}{.5\linewidth}
+\begin{tabular}{p{6em}ccccc}
+   \toprule
+                  & 1 & 2 & 3 & 4 & 5 \\
+\midrule
+      \T{Pinguin} & \y & \y & \y & \y & \y \\
+      \T{Tiger}   & \y & \n & \y & \y & \y \\
+\bottomrule
+\end{tabular}
+\end{minipage}\hspace*{5em}\begin{minipage}{.5\linewidth}
+\begin{tabular}{p{6em}ccccc}
+      \toprule
+                  & 1 & 2 & 3 & 4 & 5 \\
+\midrule
+      \T{Auto} & \y & \n & \n & \y & \n \\
+      \T{Felspingu} & \y & \n & \y & \y & \n \\
+\bottomrule
+\end{tabular}
+\end{minipage}\hfill}
+\end{itemize}
+\end{frame}
+
+\subsection{Ausnahmen}
+\begin{frame}{Fehlerbehandlung}
+   \begin{itemize}[<+(1)->]
+      \itemsep8pt
+      \item Wenn irgendetwas schief geht, wirft Java eine Ausnahme.
+      \item Wir unterscheiden drei Arten: \begin{itemize}
+         \item \textsb{Error:} Katastrophe, zum Beispiel kein Speicher. Kaum behandelbar.
+         \item \textsb{RuntimeException:} Vorhersehbar, aber nun schwer behandelbar (wie ein negativer Array-Index,~\ldots).
+         \item \textsb{Exception:} Schwer vorhersehbare Ausnahme (wie Datei nicht gefunden,~\ldots).
+      \end{itemize}
+      \item Normale \say{Exceptions} \emph{müssen} in Java: \begin{itemize}
+         \item Behandelt werden (\bjava{try-catch}), oder
+         \item weitergeleitet werden (\bjava{throws}).
+      \end{itemize}
+      % \item RuntimeExceptions und Errors können behandelt werden, bei Errors ist meist alles zu spät.
+   \end{itemize}
+\end{frame}
+
+\begin{frame}[c]{Eskalationsfreude}
+   \begin{itemize}[<+(1)->]
+      \itemsep10pt
+      \item Eine Ausnahme unterbricht den Programmfluss.
+      \item Wird sie nicht direkt behandelt, eskaliert die Ausnahme den \say{Call-Stack} hinauf.
+      \item Was über die \bjava{main}-Methode eskaliert wird von der JVM abgefangen und beendet das Programm.
+      \item Ausnahmen sollten in Java aber nicht zur Werterückgabe verwendet werden.
+      % \item RuntimeExceptions und Errors können behandelt werden, bei Errors ist meist alles zu spät.
+   \end{itemize}
+\end{frame}
+
+
+\ifshowtasks
+\SidebarTask{Fehler finden}
+\begin{frame}[fragile,c]{Fehler finden}
+\onslide<2->{\footnotesize\flushleft Im Code finden sich \textsb{10 Fehler}, welche vom Java-Compiler erkannt werden.
+Identifizieren Sie \textsb{acht} dieser Fehler durch \begin{enumerate}
+    \item die Angabe der Code-Zeilennummer und
+    \item eine kurze Erklärung was den Fehler verursacht.
+\end{enumerate}
+\flushleft Tragen Sie die Informationen in die Tabelle ein.
+Wenn Sie mehrere Fehler in einer Code-Zeile finden, tragen sie diese separat ein~--- die zusätzlichen Zeilen existieren dabei nur, um Ihnen eine Selbstkorrektur zu ermöglichen.
+Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ein Bezeichner inkorrekt initialisiert, so zählt nicht jede Verwendung als zusätzlicher Fehler sondern nur die inkorrekte Initialisierung.\par}
+\onslide<1->{\ShortSide}%
+\end{frame}
+\SidebarReset
+
+\SidebarSolution{Auflösung 10}
+\begin{frame}[fragile,c]{Fehlersuche}
+   \updateitemize{15.}%
+   \begin{enumerate}[<+(1)->]
+      \itemsep9.25pt
+      \item \textit{Zeile 2}:\quad \bjava{void} ist kein Datentyp.
+      \item \textit{Zeile 3/10}:\quad Wenn \bjava{omega} \bjava{final} ist, kann es im\\\qquad Konstruktor nicht geändert werden.
+      \item \textit{Zeile 6}:\quad das Produkt aus \bjava{char} und \bjava{double} ist \bjava{double}\\\qquad und muss explizit zu \bjava{int} konvertiert werden.
+      \item \textit{Zeile 9}:\quad Ein Konstruktor muss genau so heißen wie die\\\qquad Klasse. Hier ist das \bjava{I} aber groß. Alternativ fehlt\\\qquad mindestens der Rückgabetyp.
+      \item \textit{Zeile 13}:\quad \bjava{double} ist ein Keyword und kann nicht als\\\qquad Bezeichner verwendet werden.
+   \end{enumerate}
+\end{frame}
+
+\begin{frame}[fragile,c]{Fehlersuche\rhead{II}}
+   \updateitemize{15.}%
+   \begin{enumerate}[<+(1)->]
+      \itemsep9.25pt
+      \item[6.] \textit{Zeile 18}:\quad \bjava{andromeda} ist in \bjava{iDoGood()} keine Variable.
+      \item[7.] \textit{Zeile 23}:\quad Hier fehlt das Semikolon, es ist\\\qquad auskommentiert.
+      \item[8.] \textit{Zeile 25}:\quad \bjava{System.Err} existiert nur kleingeschrieben als\\\qquad\bjava{System.err}.
+      \item[9.] \textit{Zeile 30}:\quad \bjava{global} ist in Java kein gültiges\\\qquad Methoden-Präfix.
+      \item[10.] \textit{Zeile 31}:\quad \bjava{iDoGood} ist ein Konstruktor und kann nur mit\\\qquad\bjava{new} aufgerufen werden (die \bjava{boolean}-Methode bräuchte ein Objekt).
+   \end{enumerate}
+\end{frame}
+\SidebarReset
+\fi
+
+\subsection{Recap}
+\begin{frame}[c]{\paletteB{\sbfamily Kurzgesagt}\hfill OOP}
+\begin{itemize}[<+(1)->]
+   \itemsep18pt
+   \item Eine Klasse definiert die Blaupause für Objekte. \begin{itemize}
+      \item Attribute definieren den Zustand.
+      \item Methoden definieren den Verhalten.
+   \end{itemize}
+   % \item Attribute definieren den Zustand, Methoden das Verhalten.% (Nicht-Statische)
+   \item Der Konstruktor baut den initialen Zustand \begin{itemize}
+      \item \textsb{Instanziierung}: Erzeugen eines neuen Objektes.
+      \item Wenn keiner: erzeugt Java den leeren Standardkonstruktor.
+      \item \bjava{this} erlaubt Aufruf von Überladungen.
+   \end{itemize}
+   \item Klassen, Methoden,~\ldots:\hfill \textsb{Sichtbarkeit}  (\bjava{public},~\ldots)
+   \item \textsb{Gültigkeit}sbereich: Wo die Daten \say{existieren}.
+   % \item Packages konstruieren Namensräume (\bjava{import}).
+\end{itemize}
+\LargeSide
+\end{frame}
+
+% \tikz{\pingu[wings raise,body=paletteB!68!pingu@white,body front=paletteB!38!pingu@white,eyes wink,eyes color=paletteB!68!pingu@white,bill color=paletteB!68!pingu@white,feet color=paletteB!68!pingu@white,heart=paletteB!38!pingu@white]
+\newsavebox\postpengu
+\savebox\postpengu{\tikz\pingu[body=paletteB!68!pingu@white,body front=paletteB!38!pingu@white,eyes wink,eyes color=paletteB!68!pingu@white,bill color=paletteB!68!pingu@white,feet color=paletteB!68!pingu@white,heart=paletteB!38!pingu@white,santa hat=paletteB!68!pingu@white,santa hat second=paletteB!38!pingu@white,santa beard=paletteB!68!pingu@white];}
+\PostPage{\begin{tikzpicture}[overlay,remember picture]
+   \node[below left=.66cm,scale=1.33] at (current page.north east) {\rotatebox{-10}{\usebox\postpengu}};
+\end{tikzpicture}}
+
+\end{document}

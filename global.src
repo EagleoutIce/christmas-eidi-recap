@@ -1,0 +1,167 @@
+\errorcontextlines999999
+\usepackage{attachfile2}
+\attachfilesetup{%
+    author={Florian Sihler},%
+    color=0.2 0.3647 0.4941, icon=Tag, mimetype=text/plain%
+}
+\usepackage[prefix=]{xcolor-material}
+
+\usepackage[%
+    sopra-listings={encoding,cpalette,print,highlights},%
+    sopra-tables,
+    lecture-bibliography={biber,style=numeric-comp},
+    color-palettes={addons},%
+    util,beamer-extra,%
+    lithie-boxes={germanenv,koma,overwrite},%
+    lithie-task-boxes={cpalette},%
+    lecture-links={patchurl},%
+    lecture-registers={disable}% would interfere with beamer
+]{lithie-util}
+\usepackage{lecture-personal-tikz,lecture-personal-extra-units,tikzsymbols}
+
+\def\solcustom{fill=paletteB!30,draw=paletteB!30}
+
+\usetheme[libs,nofootfade,centerfoot]{dividing-lines}
+\def\DoTitlepage{}
+
+\DefinePalette{christmas}
+{Hellblau,hellbläulich: RGB(21, 110, 130)}
+{Türkis,türkisfarben: RGB(137,64,75)}
+{Blau,bläulich: RGB(21, 92, 148)}
+{Grün,grünlich: RGB(21, 150, 90)}
+\UsePalette{christmas}
+\SetColorProfile*{paletteB}{paletteC}{paletteD}
+\outro{\insertshortdate}
+\colorlet{cprimary}{paletteB}\AtBeginDocument{\colorlet{cprimary}{paletteB}}
+\colorlet{MaterialHeaderColor}{paletteB!75!white}%
+\colorlet{NextMaterialHeaderColor}{paletteB!65!white}%
+\hypersetup{colorlinks=false}
+
+\RestyleAlgo{plain}
+\solLoadLanguage{latex,bash,cpp}
+\usepackage[ngerman]{babel}
+
+\SetAllLinkStyle{#1}
+
+\usepackage{tikzducks,xfrac}
+
+\long\def\info#1{\textcolor{gray}{\scriptsize(#1)}}
+\long\def\infoblock#1{\par{\scriptsize\textcolor{gray}{(#1)}\par}}
+
+\renewcommand\parallelcontent[3][t]{%
+\begin{columns}[#1,onlytextwidth]
+\column{.5\linewidth}#2\relax
+\column{.5\linewidth}#3\relax
+\end{columns}
+}
+
+\usepackage[glows]{tikzpingus}
+
+\usetikzlibrary{decorations.text,tikzmark,3d}
+
+\newif\iffull
+\fulltrue
+
+\def\curpath{./}
+
+\author{Florian Sihler}
+\institute{Institute of Distributed Systems \(\circ\) University Ulm}
+
+\usepackage{lecture-personal-resize}
+\pgfmathsetseed{\number\pdfrandomseed}
+
+\usetikzlibrary{decorations.pathreplacing,decorations.text,arrows.meta,decorations,decorations.pathreplacing}
+\usepackage{tikzducks,tikzsymbols}
+
+
+\usepackage[chess]{eagle-maps}
+\colorlet{chesswhite}{paletteA!90!white}
+\colorlet{chessblack}{paletteB!90!white}
+
+\colorlet{MaterialHeaderColor}{paletteB}%
+\colorlet{NextMaterialHeaderColor}{paletteB!75!white}%
+
+
+\colorlet{chessfieldblack}{lightgray}
+
+\InputIfFileExists{ebl.sty}{}{}
+
+\newsavebox\pinguexplainbox
+\savebox\pinguexplainbox{}
+\definecolor{pingu-board-green}{RGB}{58, 77, 57}
+\colorlet{pingu-board-green}{pingu-board-green!80!paletteA}
+\pingudefaults{lightsaber left outer glow factor=.05,lightsaber right outer glow factor=.05}
+
+
+\makeatletter
+\def\LstBoardStyle{%
+\sol@list@define@styles{%
+ {keywordB: \@declaredcolor{sol@colors@lst@keywordB}\itshape},%
+ {keywordC: \@declaredcolor{sol@colors@lst@keywordC}\itshape},%
+}\lstcolorlet{numbers}{white}\lstcolorlet{keywordA}{white}\lstcolorlet{keywordB}{white}\lstcolorlet{keywordC}{pingu@white}\lstcolorlet{comments}{pingu-board-green!40!white}\lstcolorlet{literals}{pingu@white}\lstset{aboveskip=0pt,belowskip=0pt,xleftmargin=0pt}}
+
+% [node] | pingu | text
+\newcommand\MakeThePinguExplainIt[3][]{%
+\savebox\pinguexplainbox{%
+\begin{tikzpicture}
+  \pingu[body=pingu@black!70!pingu@main,glasses,right wing wave,staff right,left wing grab,cup=pingu@green!80!pingu@black,right item angle=-10,right eye wink,staff right length=23mm,cap=pingu@bronze!50!pingu@black!70!pingu@main, cap extra height=1.125mm,name=pingu,#2]
+
+  \node[above left=-2.66mm,fill=pingu-board-green,draw=pingu@bronze!50!pingu@black!70!pingu@main!80!white,line width=.6mm,rounded corners=2pt,text width=5.25cm,minimum height=1.5cm,text=white,inner sep=8pt,align=justify,#1] at (pingu-staff-top) {\LstBoardStyle\topsep=0pt\ignorespaces#3};
+\end{tikzpicture}}}
+
+\usepackage{tikz-qr}
+\colorlet{qr@fancy@gradient@tl}{paletteB!96!pingu@white}
+\colorlet{qr@fancy@gradient@br}{purple!74!paletteD}
+\colorlet{codeouthl}{gray!75!white}
+\makeatletter
+\def\SetupLstHl{%
+\lstcolorlet{highlight}{codeouthl}%
+\sol@list@define@styles{%
+ {highlight: \@declaredcolor{sol@colors@lst@highlight}\upshape},%
+}}
+\def\NLMarker{{\color{lightgray}\footnotesize$\hookleftarrow$}}%
+
+\updateitemize{\paletteB{\faAngleRight}}
+\updateitemizesub{\textcolor{gray}{\faAngleRight}}
+
+\newcounter{slidetasks}
+\setcounter{slidetasks}{0}
+\def\SidebarTask#1{\stepcounter{slidetasks}\SidebarRaw{\hfill\Large\rotatebox{90}{\def\rmdefault{AlphaSlabOne-TLF}\color{paletteB!62!pingu@black!36!pingu@white}\rmfamily\selectfont Aufgabe \theslidetasks}}\pdfbookmark[3]{A\theslidetasks)~#1}{lecture@task@@id@\thepage}}
+\def\SidebarSolution#1{\SidebarRaw{\hfill\Large\rotatebox{90}{\def\rmdefault{AlphaSlabOne-TLF}\color{paletteB!62!pingu@black!36!pingu@white}\rmfamily\selectfont #1}}}
+\def\textsb#1{{\sbfamily#1}}
+\def\LargeSide{\begin{tikzpicture}[overlay, remember picture]
+  \fill[paletteB] (current page.north west) rectangle ([xshift=4.2mm]current page.south west);
+\end{tikzpicture}}
+\def\ShortSide{\begin{tikzpicture}[overlay, remember picture]
+  \fill[paletteB!62!pingu@black!36!pingu@white] (current page.north west) rectangle ([xshift=2.75mm]current page.south west);
+\end{tikzpicture}}
+
+\def\rhead#1{\hfill\textcolor{shadeB}{\sbfamily#1}}
+
+%% Extra Defs
+% Taken from lilly code extensions
+\newenvironment{lillyHighlight}[1][]
+{\begingroup\tikzset{lilly@Highlight@par/.style={#1}}\begin{lrbox}{\@tempboxa}}
+{\end{lrbox}\lilly@lsthighlight@box[lilly@Highlight@par]{\@tempboxa}\endgroup}
+
+\newcommand*\@lillyLstHL[1][]{%
+  \begin{lillyHighlight}[#1]\bgroup\aftergroup\lilly@lsthighlight@endenv%
+}
+\def\lilly@lsthighlight@endenv{\end{lillyHighlight}\egroup}
+
+\newcommand*\lilly@lsthighlight@box[2][]{%
+  \tikz[#1]{%
+    \pgfpathrectangle{\pgfpoint\p@\z@}{\pgfpoint{\wd #2}{\ht #2}}%
+    \pgfusepath{use as bounding box}%
+    \node[anchor=base west, outer sep=\z@,inner xsep=\p@, inner ysep=-1.105\p@, rounded corners=1.65\p@, minimum height=\ht\strutbox+\p@,#1]{\raisebox\p@{\strut}\strut\usebox{#2}};
+  }%
+}
+
+\def\lstHLZWS{\@lillyLstHL[fill=gray!31,draw=gray!31]}
+
+\lstdefinelanguage{xJava}{
+    language=lJava,
+    moredelim=**[is][{\lstHLZWS}]{|zws|}{|zws|},%
+}
+
+\usepackage{booktabs}
