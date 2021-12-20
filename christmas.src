@@ -1,5 +1,4 @@
 \input{global.src}
-\addbibresource{./christmas.bib}
 
 \lstset{lineskip=1.5pt}
 
@@ -839,7 +838,7 @@ Konstruieren Sie die folgenden drei \bjava{static}-Methoden in Java: \begin{enum
 \end{plainjava}
 \end{itemize}
 \begin{tikzpicture}[remember picture,overlay]
-\only<2->{\node[above left,yshift=.75cm,xshift=-.25cm] at(current page.south east) {\footnotesize\faFileO~\textattachfile{TileCountry.java}{TileCountry.java}};}
+\only<2->{\node[above left,yshift=.75cm,xshift=-.25cm] at(current page.south east) {\footnotesize\faFileO~\textattachfile{java/TileCountry.java}{TileCountry.java}};}
 \end{tikzpicture}%
 \end{frame}
 
@@ -1621,7 +1620,7 @@ welche aufeinander aufbauen. Sie dürfen den Fehlermechanismus von Java nicht ve
    \item<5-> \bjava{x = y = z = 0} als Kurzform für \bjava{x = 0}, \bjava{y = 0} und \bjava{z = 0}.
 \end{itemize}
 \begin{tikzpicture}[remember picture,overlay]
-   \only<6->{\node[below left=.5cm] at(current page.north east) {\footnotesize\faFileO~\textattachfile{Camera.java}{Camera.java}};}
+   \only<6->{\node[below left=.5cm] at(current page.north east) {\footnotesize\faFileO~\textattachfile{java/Camera.java}{Camera.java}};}
 \end{tikzpicture}%
 \end{frame}
 
