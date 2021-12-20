@@ -1,9 +1,7 @@
 name: build-slides
 'on':
   push:
-    branches:
-    - master
-    - main
+    branches: [ master, main ]
 
 jobs:
   build:
@@ -18,19 +16,21 @@ jobs:
       uses: actions/setup-python@v2
       with:
         python-version: '3.8'
-    - name: Setup and run sltx-install
+    - name: Setup and run sltx-install (and pu)
       run: |
+        sudo apt install poppler-utils
         pip install sltx
         echo "tx-default" | sltx docker
     - name: Compile the Documents
       run: |
-        sltx compile --root --profile "tx-default" "christmas.tex" "noanim_christmas.tex" "short_christmas.tex" "short_noanim_christmas.tex"
+        sltx compile --root --profile "tx-default" "christmas.tex" "noanim-christmas.tex" "short-christmas.tex" "short-noanim-christmas.tex"
+        pdftoppm -png -f 1 -l 1 ./noanim-christmas.pdf preview
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -f "christmas.pdf" "noanim_christmas.pdf" "short_christmas.pdf" "short_noanim_christmas.pdf"
-        git commit -m "Newly compiled data"
+        git add -f "christmas.pdf" "noanim-christmas.pdf" "short-christmas.pdf" "short-noanim-christmas.pdf" "preview-01.png"
+        git commit -m "Newly compiled PDFs"
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
