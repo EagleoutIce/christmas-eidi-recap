@@ -1,6 +1,6 @@
 public class LeonardoNumbers {
 
-   public static double L(int n) {
+   public static long L(int n) {
       if(n == 0 || n == 1) return 1;
       int l1 = 1, l2 = 1;
       for(int i = 0; i < n - 1; i++) {

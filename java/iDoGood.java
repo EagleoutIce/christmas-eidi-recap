@@ -20,7 +20,7 @@ public class iDoGood {
 
    private boolean iDoGood() {
        if(this.omega.equals("andromeda"));
-       int i = 0; // /** // **/ /** ;
+       int i = 0; // /** // **/ /* ;
        for(;i < 200;i++, i += 2)
            System.err.println(i);
        return false /** // */ ;

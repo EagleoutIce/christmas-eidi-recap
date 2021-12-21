@@ -100,7 +100,7 @@ XII. Suchen und Sortieren}%
       L(0) = 1,~L(1) = 1\qquad L(n) = L(n - 1) + L(n - 2) + 1
    \end{equation*}}\lstfs{10}\vfill
 \begin{plainjava}
-!*\onslide<3->*!public static double L(int n) {
+!*\onslide<3->*!public static long L(int n) {
 !*\onslide<4->*!   if(n == 0 || n == 1) return 1;
 !*\onslide<5->*!   int l1 = 1, l2 = 1;
 !*\onslide<6->*!   for(int i = 0; i < n - 1; i++) {
@@ -130,7 +130,7 @@ XII. Suchen und Sortieren}%
 \begin{tikzpicture}[overlay,remember picture]
    \node[below left,text width=7cm,scale=.625] at(current page.north east) {%
 \begin{plainjava}
-public static double L(int n) {
+public static long L(int n) {
    if(n == 0 || n == 1) return 1;
    int l1 = 1, l2 = 1;
    for(int i = 0; i < n - 1; i++) {
@@ -162,7 +162,7 @@ public static double L(int n) {
 \begin{tikzpicture}[overlay,remember picture]
    \node[below left,text width=7cm,scale=.625] at(current page.north east) {%
 \begin{plainjava}
-public static double L(int n) {
+public static long L(int n) {
    if(n == 0 || n == 1) return 1;
    int l1 = 1, l2 = 1;
    for(int i = 0; i < n - 1; i++) {
@@ -231,7 +231,7 @@ Da ich alle Plätzchen gleich gern habe, werde ich sie alle immer zum selben Pre
 Geld an sich ist auch gar nicht das Problem, leider können mir meine Zulieferer immer nur eine begrenzte Menge (in Gramm) an den jeweiligen Stoffen zur Verfügung stellen~--- die kann ich ihnen aber geben. Die habe ich.
 Weiter habe ich pro Jahr immer eine handvoll an Rezepten, die immer eine bestimmte Anzahl eines Mehls, eines Süßungsstoffes und einer weiteren Komponente pro Plätzchen benötigen.
 
-Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich insgesamt immer maximal viel Plätzchen aus den gegebenen Ressourcen backen kann.}
+Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich insgesamt immer maximal viele Plätzchen aus den gegebenen Ressourcen backen kann.}
 \begin{tikzpicture}[overlay,remember picture]
    \onslide<3->{\node[below left=.33cm,scale=.42] at(current page.north east) {\usebox\guenther};}
 \end{tikzpicture}
@@ -446,7 +446,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 \ifshowtasks
 \SidebarTask{Typbestimmung}
 \begin{frame}{Typbestimmung}
-\onslide<2->{\flushleft Bestimmen Sie für jeden der folgenden Java-Ausdrücke den Typ \textit{jedes Teilausdrucks} sowie das Gesamtergebnisses. Sie dürfen Rundungsprobleme der Sprache ignorieren:\vfill
+\onslide<2->{\flushleft Bestimmen Sie für jeden der folgenden Java-Ausdrücke den Typ \textit{jedes Teilausdrucks} sowie das Gesamtergebnis. Sie dürfen Rundungsprobleme der Sprache ignorieren:\vfill
 \begin{itemize}
    \itemsep10pt
    \item \bjava{14 - 3D * 2 / 12}
@@ -808,7 +808,7 @@ public class Example {
 \begin{frame}[c,fragile]{Kachelland}
 \flushleft\footnotesize
 \onslide<2->{Sie befinden sich in Kachelland, welches auf einem schachbrettartigen Feld geplant wurde.
-Für diese Aufgabe betrachten wir die Fortbewegungskosten die ein Charakter auf den jeweiligen Feldern hat, wobei wir zwei Formen des Transports unterscheiden: ohne Hilfsmittel und im Boot.
+Für diese Aufgabe betrachten wir die Fortbewegungskosten, die ein Charakter auf den jeweiligen Feldern hat, wobei wir zwei Formen des Transports unterscheiden: ohne Hilfsmittel und im Boot.
 Auf diese Weise definieren wir für jede Kachel des zweidimensionalen Landes wie teuer es ist sie ohne Hilfsmittel, oder mit einem Boot zu überquere und geben eine Zeit in Minuten an.
 Dafür verwenden wir ein Array mit zwei Elementen: \bjava{cell = \{:lan:foot:ran:, :lan:boat:ran:\}}.
 Eine negative Zahl kennzeichnet, dass es unmöglich ist, das Feld mit dem Transportmittel zu überqueren.
@@ -933,7 +933,7 @@ do {
 \SidebarTask{Schleifen umwandeln}
 \begin{frame}[fragile,c]{Schleifen umwandeln}
 \begin{uncoverenv}<2->
-\flushleft Im Folgenden finden Sie zwei Code-Ausschnitte. Schreiben Sie diese So um, dass Sie nur noch Schleifen der angegebenen Art verwenden, ohne dass sich das Verhalten des Codes verändert. Dabei repräsentiert \bjava{k} eine natürliche Zahl (exklusive \(0\)), welche Sie nicht kennen.
+\flushleft Im Folgenden finden Sie zwei Code-Ausschnitte. Schreiben Sie diese so um, dass sie nur noch Schleifen der angegebenen Art verwenden, ohne dass sich das Verhalten des Codes verändert. Dabei repräsentiert \bjava{k} eine natürliche Zahl (exklusive \(0\)), welche Sie nicht kennen.
 \lstfs{8}\begin{columns}[onlytextwidth,T]
 \column{.65\linewidth}
 \begin{plainjava}
@@ -1169,7 +1169,7 @@ System.out.println(i);
 \SidebarTask{Methodenausgaben}
 \begin{frame}[fragile,c]{Methodenausgaben}
 \flushleft\onslide<2->{Betrachten Sie das Java-Programm auf dem Blatt und geben Sie für die kommentierten Zeilen jeweils die Werte der Variablen \bjava{a}, \bjava{b} und \bjava{c} an (tragen Sie diese in die entsprechende Box \smash{\tikz[baseline=.135cm]\draw[gray,rounded corners=1pt](0,0) rectangle (.9cm,.35cm+.33\baselineskip);} ein).
-Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten Java-Mechanismen. Relevant sind: i)~Überladung, ii)~Seiteneffekt, iii)~Überschattung und iv)~Standardwerte. Sie dürfen in ihrer Skizzierung die römischen Zahlen verwenden um auf die Mechanismen hinzuweisen.}\par
+Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten Java-Mechanismen. Relevant sind: i)~Überladung, ii)~Seiteneffekt, iii)~Überschattung und iv)~Standardwerte. Sie dürfen in ihrer Skizzierung die römischen Zahlen verwenden, um auf die Mechanismen hinzuweisen.}\par
 \onslide<1->{\ShortSide}%
 \end{frame}
 \SidebarReset
@@ -1597,7 +1597,7 @@ name & \say{Saph}}}~}
 \SidebarTask{Kameraszenario}
 \begin{frame}[fragile,c]{Kameraszenario}
 \onslide<2->{\footnotesize\flushleft Sie sehen das Grundgerüst einer Kameraklasse. Bearbeiten Sie die folgenden beiden Teilaufgaben,
-welche aufeinander aufbauen. Sie dürfen den Fehlermechanismus von Java nicht verwenden.
+welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 \begin{enumerate}
     \item Schreiben Sie einen leeren Konstruktor, welcher die von Java zugewiesenen Standardwerte explizit initialisiert. Dieser Konstruktor soll nicht von Code abseits der \bjava{Camera}-Klasse aufrufbar sein und verhindern, dass so weitere Kamera-Objekte erstellt werden können.
     \item Erweitern Sie die Klasse nun in sofern, dass es immer maximal fünf Kamera-Objekte gibt, welche durch \bjava{get(int)} durch eine Zahl \(x \in \{0, 1, 2, 3, 4\}\) abgefragt werden können. Dabei soll ein Kamera-Objekt erst (mit ihrem vorher erzeugten Konstruktor) erzeugt werden, wenn es durch die Zahl angefragt wird. Weiter sollen Folgeanfragen mit der Zahl dasselbe Objekt zurückliefern. Geben Sie für \(x < 0\) und \(x \geq 5\) den Wert \bjava{null} zurück.
@@ -1778,7 +1778,7 @@ welche aufeinander aufbauen. Sie dürfen den Fehlermechanismus von Java nicht ve
 \onslide<2->{\footnotesize\flushleft Im Code finden sich \textsb{10 Fehler}, welche vom Java-Compiler erkannt werden.
 Identifizieren Sie \textsb{acht} dieser Fehler durch \begin{enumerate}
     \item die Angabe der Code-Zeilennummer und
-    \item eine kurze Erklärung was den Fehler verursacht.
+    \item eine kurze Erklärung, was den Fehler verursacht.
 \end{enumerate}
 \flushleft Tragen Sie die Informationen in die Tabelle ein.
 Wenn Sie mehrere Fehler in einer Code-Zeile finden, tragen sie diese separat ein~--- die zusätzlichen Zeilen existieren dabei nur, um Ihnen eine Selbstkorrektur zu ermöglichen.
@@ -1808,7 +1808,7 @@ Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ei
       \item[7.] \textit{Zeile 23}:\quad Hier fehlt das Semikolon, es ist\\\qquad auskommentiert.
       \item[8.] \textit{Zeile 25}:\quad \bjava{System.Err} existiert nur kleingeschrieben als\\\qquad\bjava{System.err}.
       \item[9.] \textit{Zeile 30}:\quad \bjava{global} ist in Java kein gültiges\\\qquad Methoden-Präfix.
-      \item[10.] \textit{Zeile 31}:\quad \bjava{iDoGood} ist ein Konstruktor und kann nur mit\\\qquad\bjava{new} aufgerufen werden (die \bjava{boolean}-Methode bräuchte ein Objekt).
+      \item[10.] \textit{Zeile 31}:\quad \bjava{iDoGood} ist ein Konstruktor und kann nur mit\\\qquad\bjava{new} aufgerufen werden (die \bjava{boolean}-Methode\\\qquad bräuchte ein Objekt).
    \end{enumerate}
 \end{frame}
 \SidebarReset
