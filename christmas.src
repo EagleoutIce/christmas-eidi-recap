@@ -38,7 +38,7 @@
 \begin{center}
    \vspace*{5.25mm}\par
    \bfseries\color{paletteB!68!white}
-      Dieses \ImpT{Recap} liefert \ImpT{keine Garantie auf Vollständigkeit}. Ich konzentriere mich bewusst auf einige wenige aber wichtige \ImpT{Kernthemen} die in der Hinsicht~--- zumindest auf den Folien~--- auch leicht simplifiziert dargestellt sind.\bigskip\par
+      Dieses \ImpT{Recap} liefert \ImpT{keine Garantie auf Vollständigkeit}. Ich konzentriere mich bewusst auf einige wenige aber wichtige \ImpT{Kernthemen}, die in der Hinsicht~--- zumindest auf den Folien~--- auch leicht simplifiziert dargestellt sind.\bigskip\par
       \ImpT{Fröhliche Weihnachten}\\Flo
 \end{center}
 \end{layout-imageonly}
@@ -446,7 +446,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 \ifshowtasks
 \SidebarTask{Typbestimmung}
 \begin{frame}{Typbestimmung}
-\onslide<2->{\flushleft Bestimmen Sie für jeden der folgenden Java-Ausdrücke den Typ \textit{jedes Teilausdrucks} sowie das Gesamtergebnis. Sie dürfen Rundungsprobleme der Sprache ignorieren:\vfill
+\onslide<2->{\flushleft Bestimmen Sie für jeden der folgenden Java-Ausdrücke den Typ \textit{jedes Teilausdrucks}, sowie das Gesamtergebnis. Sie dürfen Rundungsprobleme der Sprache ignorieren:\vfill
 \begin{itemize}
    \itemsep10pt
    \item \bjava{14 - 3D * 2 / 12}
@@ -809,7 +809,7 @@ public class Example {
 \flushleft\footnotesize
 \onslide<2->{Sie befinden sich in Kachelland, welches auf einem schachbrettartigen Feld geplant wurde.
 Für diese Aufgabe betrachten wir die Fortbewegungskosten, die ein Charakter auf den jeweiligen Feldern hat, wobei wir zwei Formen des Transports unterscheiden: ohne Hilfsmittel und im Boot.
-Auf diese Weise definieren wir für jede Kachel des zweidimensionalen Landes wie teuer es ist sie ohne Hilfsmittel, oder mit einem Boot zu überquere und geben eine Zeit in Minuten an.
+Auf diese Weise definieren wir für jede Kachel des zweidimensionalen Landes wie teuer es ist sie ohne Hilfsmittel, oder mit einem Boot, zu überqueren und geben eine Zeit in Minuten an.
 Dafür verwenden wir ein Array mit zwei Elementen: \bjava{cell = \{:lan:foot:ran:, :lan:boat:ran:\}}.
 Eine negative Zahl kennzeichnet, dass es unmöglich ist, das Feld mit dem Transportmittel zu überqueren.
 Konstruieren Sie die folgenden drei \bjava{static}-Methoden in Java: \begin{enumerate}
@@ -1169,7 +1169,7 @@ System.out.println(i);
 \SidebarTask{Methodenausgaben}
 \begin{frame}[fragile,c]{Methodenausgaben}
 \flushleft\onslide<2->{Betrachten Sie das Java-Programm auf dem Blatt und geben Sie für die kommentierten Zeilen jeweils die Werte der Variablen \bjava{a}, \bjava{b} und \bjava{c} an (tragen Sie diese in die entsprechende Box \smash{\tikz[baseline=.135cm]\draw[gray,rounded corners=1pt](0,0) rectangle (.9cm,.35cm+.33\baselineskip);} ein).
-Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten Java-Mechanismen. Relevant sind: i)~Überladung, ii)~Seiteneffekt, iii)~Überschattung und iv)~Standardwerte. Sie dürfen in ihrer Skizzierung die römischen Zahlen verwenden, um auf die Mechanismen hinzuweisen.}\par
+Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten Java-Mechanismen. Relevant sind: i)~Überladungen, ii)~Seiteneffekte, iii)~Überschattungen und iv)~Standardwerte. Sie dürfen in ihrer Skizzierung die römischen Zahlen verwenden, um auf die Mechanismen hinzuweisen.}\par
 \onslide<1->{\ShortSide}%
 \end{frame}
 \SidebarReset
@@ -1599,7 +1599,7 @@ name & \say{Saph}}}~}
 \onslide<2->{\footnotesize\flushleft Sie sehen das Grundgerüst einer Kameraklasse. Bearbeiten Sie die folgenden beiden Teilaufgaben,
 welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 \begin{enumerate}
-    \item Schreiben Sie einen leeren Konstruktor, welcher die von Java zugewiesenen Standardwerte explizit initialisiert. Dieser Konstruktor soll nicht von Code abseits der \bjava{Camera}-Klasse aufrufbar sein und verhindern, dass so weitere Kamera-Objekte erstellt werden können.
+    \item Schreiben Sie einen leeren Konstruktor, welcher die von Java zugewiesenen Standardwerte explizit initialisiert. Dieser Konstruktor soll nicht von Code abseits der \bjava{Camera}-Klasse aufrufbar sein und so verhindern, dass weitere Kamera-Objekte erstellt werden können.
     \item Erweitern Sie die Klasse nun in sofern, dass es immer maximal fünf Kamera-Objekte gibt, welche durch \bjava{get(int)} durch eine Zahl \(x \in \{0, 1, 2, 3, 4\}\) abgefragt werden können. Dabei soll ein Kamera-Objekt erst (mit ihrem vorher erzeugten Konstruktor) erzeugt werden, wenn es durch die Zahl angefragt wird. Weiter sollen Folgeanfragen mit der Zahl dasselbe Objekt zurückliefern. Geben Sie für \(x < 0\) und \(x \geq 5\) den Wert \bjava{null} zurück.
 \end{enumerate}}
 \onslide<1->{\ShortSide}%
