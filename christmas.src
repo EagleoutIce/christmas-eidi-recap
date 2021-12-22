@@ -409,7 +409,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 \path (long) -- (float);
 \path (float) -- (double);}
 \onslide<6->{\path[rounded corners=2pt] (char) -| (int) coordinate[pos=.3] (join);
-\node[below right,xshift=5mm,yshift=-1mm] (join-d) at (join) {UTF-8};
+\node[below right,xshift=5mm,yshift=-1mm] (join-d) at (join) {UTF-16};
 \path[gray] (join.east) to[bend right] (join-d.west);}
 \onslide<7->{
    \node[gray,above] at (byte.north) {8};
@@ -492,7 +492,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
       \item<2->[Deklaration] Es gibt etwas mit diesem Namen (und Typ):\\
          \onslide<3->{\bjava{int x;}\quad \bjava{char w;}}
       \item<4->[Zuweisung] Wertzuweisung, bzw. Ersetzung des Wertes:\\
-         \onslide<5->{\bjava{x = 12; x = 9}\quad \bjava{w = 'k';}}
+         \onslide<5->{\bjava{x = 12; x = 9;}\quad \bjava{w = 'k';}}
       \item<6->[Initialisierung] \textit{Erste} Wertzuweisung zu einer Variable:\\
          \onslide<7->{\bjava{int x = 12;}\quad \bjava{char w; w = 'x';}}
    \end{description}\medskip
@@ -768,12 +768,12 @@ public class Example {
 \begin{itemize}[<+(1)->]
    \itemsep18pt
    \item \textit{Implizit}:\hfill \dt{byte}~\mto~\dt{short}~\mto~\dt{int}~\mto~\dt{long}~\mto~\dt{float}~\mto~\dt{double}\\
-   Zahlen von klein zu groß, sowie: \dt{char}~\mto~\dt{int}
+   Zahlen von klein zu groß, sowie: \dt{char}~\mto~\dt{int}.
    \item \textit{Präzedenzregeln}:\\
    Post vor Prä, sonst wie Arithmetik \& Logik.
    \item \textit{Default-Werte}:\\
    Zahlen und Zeichen \bjava{0}, Boolean \bjava{false}, Rest \bjava{null}.
-   \item \textit{Überschatten}:\hfill Lokal über Global.
+   \item \textit{Überschatten}:\quad Lokal über Global.
 \end{itemize}
 \LargeSide
 \end{frame}
@@ -888,7 +888,7 @@ Konstruieren Sie die folgenden drei \bjava{static}-Methoden in Java: \begin{enum
 \column{.43\linewidth}
 \begin{uncoverenv}<4->
 \begin{plainjava}
-for(int i = 0; i < 8; i++) {
+for(int i = 3; i < 8; i++) {
    // Miau
 }
 \end{plainjava}
@@ -920,7 +920,7 @@ do {
 \end{layout-imageonly}
 \begin{itemize}
    \itemsep5pt
-   \item<10-> Bei \bjava{for} sind alle drei Blöcke optional
+   \item<10-> Bei \bjava{for} sind alle drei Blöcke optional.
    \item<11-> Bei \bjava{do}-\bjava{while} aufpassen: \begin{itemize}
       \item<12-> Semikolon!
       \item<13-> Wird es wirklich mindestens ein mal durchlaufen?
@@ -1033,6 +1033,7 @@ System.out.println(i);
    \item Die drei Schleifenarten sind gleichmächtig. \begin{itemize}
       \item Maximum bekannt: \bjava{for}
       \item Mindestens ein mal: \bjava{do}-\bjava{while}
+      \item Sonst: \bjava{while}
    \end{itemize}
 \end{itemize}
 \LargeSide
@@ -1083,7 +1084,8 @@ System.out.println(i);
    \onslide<6->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:String-l) -- ([yshift=8pt]pic cs:String-r) node[pos=.5,above=2pt] {\strut R-Typ};}
    \onslide<7->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:name-l) -- ([yshift=8pt]pic cs:name-r) node[pos=.5,above=2pt] {\strut Name};}
    \onslide<8->{\draw[decoration=brace,decorate] ([yshift=8pt]pic cs:params-l) -- ([yshift=8pt]pic cs:params-r) node[pos=.5,above=2pt] {\strut Parameterliste};}
-   \onslide<9->{
+   \onslide<9->{\draw[decoration={brace,mirror},decorate] ([yshift=8pt,xshift=-1.5pt]pic cs:start) -- ([yshift=-2pt,xshift=-1.5pt]pic cs:end) node[pos=.5,left=3pt] {\strut\rotatebox{90}{Inhalt}};}
+   \onslide<10->{
       \node[above left=.5cm,draw=gray,very thick,inner sep=5pt,rounded corners=1.75pt,xshift=-.25cm,yshift=.65cm,align=left] at(current page.south east) {\textsb{Signatur}: Name \& Parametertypen\\\lstfs{11}\bjava{giveMeTheMiau(int, double)}};
    }
 \end{tikzpicture}
