@@ -55,8 +55,8 @@
 \makeatletter
 
 \usepackage{tikz-qr}
-\colorlet{qr@fancy@gradient@tl}{paletteB!96!pingu@white}
-\colorlet{qr@fancy@gradient@br}{purple!74!paletteD}
+\colorlet{qr@fancy@gradient@tl}{pingu@white}
+\colorlet{qr@fancy@gradient@br}{paletteB!78!pingu@white}
 \colorlet{codeouthl}{gray!75!white}
 \makeatletter
 \def\SetupLstHl{%

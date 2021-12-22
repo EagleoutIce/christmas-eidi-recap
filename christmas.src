@@ -1842,6 +1842,7 @@ Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ei
 \savebox\postpengu{\tikz\pingu[body=paletteB!68!pingu@white,body front=paletteB!38!pingu@white,eyes wink,eyes color=paletteB!68!pingu@white,bill color=paletteB!68!pingu@white,feet color=paletteB!68!pingu@white,heart=paletteB!38!pingu@white,santa hat=paletteB!68!pingu@white,santa hat second=paletteB!38!pingu@white,santa beard=paletteB!68!pingu@white];}
 \PostPage{\begin{tikzpicture}[overlay,remember picture]
    \node[below left=.66cm,scale=1.33] at (current page.north east) {\rotatebox{-10}{\usebox\postpengu}};
+   \node[below right=.5cm] (qr) at(current page.north west) {\fancyqr[height=3.65cm]{https://github.com/EagleoutIce/christmas-eidi-recap}};
+   \node[below right,pingu@white,yshift=-.25cm,text width=3.75cm,font=\scriptsize] at(qr.south west) {Sources \& current version on GitHub};
 \end{tikzpicture}}
-
 \end{document}
