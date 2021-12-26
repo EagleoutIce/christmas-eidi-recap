@@ -13,14 +13,14 @@
 {\setbeamercolor{background canvas}{bg=paletteB}
 \def\ImpT#1{\textcolor{pingu@white}{#1}}
 \begin{frame}[c,plain]{}
-\begin{layout-imageonly}
+\begin{layout-full}
 \begin{center}
    \vspace*{5.25mm}\par
    \huge\bfseries\color{paletteB!68!white}%
       Se greit \ImpT{EidI}\llap{\raisebox{-5.94pt}{\scalebox{.375}{\rotatebox{-20}{\usebox\christmashat}}\hskip-11pt}} recap\medskip\\
    \small Hat jemand schon die P\scalebox{.065}{\usebox\pinguI}ngu-Gang informiert?
 \end{center}
-\end{layout-imageonly}
+\end{layout-full}
 \begin{tikzpicture}[overlay,remember picture]
    \node[above left,paletteB!68!white,scale=.65] at (current page.south east) {\scriptsize\bfseries\insertauthor~\textbullet~\insertdate};
 \end{tikzpicture}
@@ -31,14 +31,14 @@
 {\setbeamercolor{background canvas}{bg=paletteB}
 \def\ImpT#1{\textit{\color{pingu@white}#1}}
 \begin{frame}[c,plain]{}
-\begin{layout-imageonly}
+\begin{layout-full}
 \begin{center}
    \vspace*{5.25mm}\par
    \bfseries\color{paletteB!68!white}
       Dieses \ImpT{Recap} liefert \ImpT{keine Garantie auf Vollständigkeit}. Ich konzentriere mich bewusst auf einige wenige aber wichtige \ImpT{Kernthemen}, die in der Hinsicht~--- zumindest auf den Folien~--- auch leicht simplifiziert dargestellt sind.\bigskip\par
       \ImpT{Fröhliche Weihnachten}\\Flo
 \end{center}
-\end{layout-imageonly}
+\end{layout-full}
 \end{frame}
 }
 
@@ -1087,7 +1087,7 @@ System.out.println(i);
 \end{frame}
 
 \subsection{Methodenaufruf}
-\begin{frame}[fragile,c]{Methodenaufruf}
+\begin{frame}[c]{Methodenaufruf}
    \begin{itemize}[<+(1)->]
       \itemsep11pt
       \item Methoden mit \bjava{static} gehören der Klasse. \begin{itemize}
