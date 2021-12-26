@@ -19,7 +19,7 @@
 \begin{layout-imageonly}
    \begin{center}
       \vspace*{5.25mm}\par
-      \huge\bfseries\color{paletteB!68!white}
+      \huge\bfseries\color{paletteB!68!white}%
          Se greit \ImpT{EidI}\llap{\raisebox{-5.94pt}{\scalebox{.375}{\rotatebox{-20}{\usebox\christmashat}}\hskip-11pt}} recap\medskip\\
       \small Hat jemand schon die P\scalebox{.065}{\usebox\pinguI}ngu-Gang informiert?
    \end{center}
