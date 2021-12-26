@@ -1,8 +1,5 @@
 \input{global.src}
 
-\lstset{lineskip=1.5pt}
-
-\attachfilesetup{color=paletteB}
 \title{Se greit EidI recap}
 \date{\sffamily 22.12.2021}
 

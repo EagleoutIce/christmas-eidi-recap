@@ -1,33 +1,24 @@
 \errorcontextlines999999
 \usepackage{attachfile2}
-\attachfilesetup{%
-    author={Florian Sihler},%
-    color=0.2 0.3647 0.4941, icon=Tag, mimetype=text/plain%
-}
 
 \usepackage[%
   sopra-listings={encoding,cpalette,print,highlights},%
-  sopra-tables,
   lecture-bibliography={biber,style=numeric-comp},
   color-palettes={addons},%
-  util,beamer-extra,%
+  util,beamer-extra,sopra-tables,%
   lithie-boxes={germanenv,koma,overwrite},%
   lithie-task-boxes={cpalette},%
   lecture-links={patchurl},%
   lecture-registers={disable}% would interfere with beamer
 ]{lithie-util}
-\usepackage{lecture-personal-tikz,lecture-personal-extra-units,tikzsymbols}
-
+\usepackage{lecture-personal-tikz,lecture-personal-extra-units,tikzsymbols,booktabs}
 \def\solcustom{fill=paletteB!30,draw=paletteB!30}
 
 \usetheme[libs,nofootfade,centerfoot]{dividing-lines}
 \def\DoTitlepage{}
 
-\DefinePalette{christmas}
-{Hellblau,hellbläulich: RGB(21, 110, 130)}
-{Rot,rötlich: RGB(137,64,75)}
-{Blau,bläulich: RGB(21, 92, 148)}
-{Grün,grünlich: RGB(21, 150, 90)}
+\DefinePalette{christmas}{Hellblau,hellbläulich: RGB(21, 110, 130)}
+{Rot,rötlich: RGB(137,64,75)}{Blau,bläulich: RGB(21, 92, 148)}{Grün,grünlich: RGB(21, 150, 90)}
 \UsePalette{christmas}
 \SetColorProfile*{paletteB}{paletteC}{paletteD}
 \outro{\insertshortdate}
@@ -45,12 +36,10 @@
 \author{Florian Sihler}
 \institute{Institute of Distributed Systems \(\circ\) University Ulm}
 
-\usepackage{lecture-personal-resize}
+\usepackage{lecture-personal-resize,tikzsymbols}
 \pgfmathsetseed{\number\pdfrandomseed}
 
 \usetikzlibrary{decorations.pathreplacing,decorations.text,arrows.meta,decorations,decorations.pathreplacing,tikzmark,3d}
-\usepackage{tikzducks,tikzsymbols}
-
 
 \makeatletter
 
@@ -58,7 +47,7 @@
 \colorlet{qr@fancy@gradient@tl}{pingu@white}
 \colorlet{qr@fancy@gradient@br}{paletteB!78!pingu@white}
 \colorlet{codeouthl}{gray!75!white}
-\makeatletter
+
 \def\SetupLstHl{%
 \lstcolorlet{highlight}{codeouthl}%
 \sol@list@define@styles{%
@@ -104,4 +93,8 @@
 \def\lstHLZWS{\@lillyLstHL[fill=gray!31,draw=gray!31]}
 \lstdefinelanguage{xJava}{language=lJava, moredelim=**[is][{\lstHLZWS}]{|zws|}{|zws|}}
 
-\usepackage{booktabs}
+\lstset{lineskip=1.5pt}
+\attachfilesetup{%
+    author={Florian Sihler},%
+    color=paletteB, icon=Tag, mimetype=text/plain%
+}
