@@ -37,10 +37,9 @@
 \usepackage{lecture-personal-resize,tikzsymbols}
 \pgfmathsetseed{\number\pdfrandomseed}
 
-\usetikzlibrary{decorations.pathreplacing,decorations.text,arrows.meta,decorations,decorations.pathreplacing,tikzmark,3d}
+\usetikzlibrary{decorations,decorations.pathreplacing,decorations.text,arrows.meta,tikzmark,3d}
 
 \makeatletter
-
 \usepackage{tikz-qr}
 \colorlet{qr@fancy@gradient@tl}{pingu@white}
 \colorlet{qr@fancy@gradient@br}{paletteB!78!pingu@white}
@@ -66,7 +65,6 @@
 \def\ShortSide{\begin{tikzpicture}[overlay, remember picture]
   \fill[paletteB!62!pingu@black!36!pingu@white] (current page.north west) rectangle ([xshift=2.75mm]current page.south west);
 \end{tikzpicture}}
-
 \def\rhead#1{\hfill\textcolor{shadeB}{\sbfamily#1}}
 
 %% Extra Defs
@@ -87,7 +85,6 @@
     \node[anchor=base west, outer sep=\z@,inner xsep=\p@, inner ysep=-1.105\p@, rounded corners=1.65\p@, minimum height=\ht\strutbox+\p@,#1]{\raisebox\p@{\strut}\strut\usebox{#2}};
   }%
 }
-
 \def\lstHLZWS{\@lillyLstHL[fill=gray!31,draw=gray!31]}
 \lstdefinelanguage{xJava}{language=lJava, moredelim=**[is][{\lstHLZWS}]{|zws|}{|zws|}}
 
