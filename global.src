@@ -3,15 +3,13 @@
 
 \usepackage[%
   sopra-listings={encoding,cpalette,print,highlights},%
-  lecture-bibliography={biber,style=numeric-comp},
   color-palettes={addons},%
-  util,beamer-extra,sopra-tables,%
-  lithie-boxes={germanenv,koma,overwrite},%
-  lithie-task-boxes={cpalette},%
+  lecture-shortcuts,lecture-algorithms,%
+  lecture-heap-n-stack,beamer-latex-shortcuts,%
   lecture-links={patchurl},%
   lecture-registers={disable}% would interfere with beamer
 ]{lithie-util}
-\usepackage{lecture-personal-tikz,lecture-personal-extra-units,tikzsymbols,booktabs}
+\usepackage{lecture-personal-tikz,tikzsymbols,booktabs}
 \def\solcustom{fill=paletteB!30,draw=paletteB!30}
 
 \usetheme[libs,nofootfade,centerfoot]{dividing-lines}
