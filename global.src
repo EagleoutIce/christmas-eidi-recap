@@ -9,7 +9,7 @@
   lecture-links={patchurl},%
   lecture-registers={disable}% would interfere with beamer
 ]{lithie-util}
-\usepackage{lecture-personal-tikz,tikzsymbols,booktabs}
+\usepackage{lecture-personal-resize,lecture-personal-tikz,tikzsymbols,booktabs}
 \def\solcustom{fill=paletteB!30,draw=paletteB!30}
 
 \usetheme[libs,nofootfade,centerfoot]{dividing-lines}
@@ -34,7 +34,6 @@
 \author{Florian Sihler}
 \institute{Institute of Distributed Systems \(\circ\) University Ulm}
 
-\usepackage{lecture-personal-resize,tikzsymbols}
 \pgfmathsetseed{\number\pdfrandomseed}
 
 \usetikzlibrary{decorations,decorations.pathreplacing,decorations.text,arrows.meta,tikzmark,3d}
