@@ -60,7 +60,6 @@ XI. Algorithmen und Zeitkomplexität\\
 XII. Suchen und Sortieren}%
 \updateitemize{10.}%
 \only<3->{\vspace*{2.25em}\begin{enumerate}
-   % \only<5-|handout:2>{\itemsep10pt}
    \item<3-> Algorithmenkonstruktion
    \item<3-> Programmkonstrukte (Namen \& Programmfluss)
    \item<3-> Arrays und Iterationen
@@ -317,8 +316,6 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 }}
 \onslide<10->{\KwRet{\(\forall_{i \in \{1, \ldots, n\}} r_i \geq 0\)\;}}
 \end{algorithm}
-   % \item \say{}.
-   % \item Wir werden schreiben \say{anwendbar(\(A\))}.
 \end{itemize}
 \onslide<1->{\begin{tikzpicture}[overlay,remember picture]
    \node[below left=.5cm,yshift=-1.15cm] at (current page.north east) {\(r_1, \ldots, r_n\) und \(R = \{(k_1, k_2, k_3)_1, \ldots, (\ldots)_m\} \longrightarrow k\)};
@@ -341,7 +338,6 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 }}
 \onslide<10->{\KwRet{\(\forall_{i \in \{1, \ldots, n\}} r_i \geq 0\)\;}}
 \end{algorithm}
-   % \item Wir werden schreiben \say{anwendbar(\(A\))}.
 \end{itemize}
 \onslide<1->{\begin{tikzpicture}[overlay,remember picture]
    \node[below left=.5cm,yshift=-1.15cm] at (current page.north east) {\(r_1, \ldots, r_n\) und \(R = \{(k_1, k_2, k_3)_1, \ldots, (\ldots)_m\} \longrightarrow k\)};
@@ -460,7 +456,6 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 \def\ob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{\mj{#2}}\only<#1->{\overbrace{\mj{#2}}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
 \def\gub<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\underbrace{#2}_{\makebox[0pt]{\scriptsize\mj{#3}}}}}
 \def\gob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\overbrace{#2}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
-% \underbrace{\mj{14}}_{\mj{int}} \mjava{-} \underbrace{\mj{3D}}_{\mj{double}} \mjava{*} \underbrace{\mj{2}}_{\mj{int}} \mjava{/} \underbrace{\mj{12}}_{\mj{int}}
 \begin{frame}[fragile,c]{Typbestimmung\rhead{II}}
    \begin{itemize}
       \itemsep14pt
@@ -477,8 +472,6 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
       \item<9-> \(\gob<12>{\gub<11>{\ob<10>{7}{int}\mj{/}\ob<10>{2}{int}}{int} \mj{-} \gub<11>{\ob<10>{3}{int} \mj{*} \ob<10>{2.5}{double}}{double}}{double} \mj{+} \ob<10>{2f}{float} \only<13->{{}= \ob<13>{-2.5}{double}}\)
    \end{itemize}
 \end{frame}
-% \item<12-> \bjava{}
-% \item \bjava{7/2 - 3 * 2.5 + 2f}
 \SidebarReset
 \fi
 
@@ -493,8 +486,6 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
       \item<6->[Initialisierung] \textit{Erste} Wertzuweisung zu einer Variable:\\
          \onslide<7->{\bjava{int x = 12;}\quad \bjava{char w; w = 'x';}}
    \end{description}\medskip
-   % deklaration, initialisierung und defintion
-   % noch eine Aufgabe dazu
    \begin{center}
       \onslide<8->{\bjava{final} erzwingt, dass eine Variable nur Initialisiert und dann nicht mehr zugewiesen werden darf.}
    \end{center}
@@ -519,11 +510,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
          \item \bjava{boolean} $\longrightarrow$ \bjava{false}
          \item Komplexe Datentypen $\longrightarrow$ \bjava{null}
       \end{itemize}
-      % \item Allgemein: Zahlen \& Zeichen \(0\), boolean \bjava{false}, Rest \bjava{null}.
    \end{itemize}
-   % \begin{center}
-   %    Wir verlassen uns nicht auf Standardwerte
-   % \end{center}
 \begin{tikzpicture}[overlay,remember picture]
    \onslide<12->{\node[below left,yshift=.33cm,scale=.65] (d) at(current page.north east) {\rotatebox{180}{\usebox\holdi}};
    \node[left] at(d.west) {Explicit is betta!};}
@@ -786,17 +773,12 @@ public class Example {
       \bjava{int[] = new int[12];}
    \end{center}
    \item Mehrdimensionale Arrays, sind Arrays von Arrays von\ldots
-% \end{itemize}
-% \begin{columns}[onlytextwidth,c]
-% \column{.5\linewidth}
-% \begin{itemize}
    \item Zugriff: \bjava{:lan:array:ran:[:lan:index:ran:]}\smallskip \begin{itemize}
    \itemsep2.5pt
    \item Liefert \bjava{:lan:index:ran:}-Element in \bjava{:lan:array:ran:}.
    \item Wenn Array von Array, ist \bjava{:lan:array:ran:[:lan:index:ran:]} wieder ein Array.
    \end{itemize}
 \end{itemize}
-% \end{columns}
 \end{frame}
 
 
@@ -1134,7 +1116,6 @@ System.out.println(i);
       \item<7-> \textsb{Seiteneffekt}: Wenn nach dem Aufruf mehr als der Rückgabewert verbleibt. \begin{itemize}
          \item<8-> Instanzvariable verändert sich.
          \item<9-> Durch Referenz wird ein Array modifiziert.
-         % \item<10-> Es gibt eine Ausgabe in der Kommandozeile.
          \item<10-> Eine Nachricht fliegt durchs Internet.
          \item<11-> \ldots
       \end{itemize}
@@ -1475,7 +1456,6 @@ name & \say{Saph}}}~}
       \item Hat keinen Rückgabetyp
       \item Kann nichts zurückgeben
       \item Benötigt \bjava{new} für Aufruf
-      % \item Erzeugt \emph{immer} ein Objekt oder einen Fehler.
       \item \ldots
    \end{itemize}
    \item Gemeinsamkeiten:
@@ -1491,7 +1471,6 @@ name & \say{Saph}}}~}
 \begin{itemize}[<+(1)->]
    \item Java erzeugt \textit{genau dann} einen leeren Konstruktor, wenn kein expliziter Konstruktor existiert.
 \end{itemize}
-% Keine Methode, Überladen, Erstellung
 \begin{tikzpicture}[overlay,remember picture]
    \onslide<17->{\node[below left=.5cm,align=right] at(current page.north east) {\textsb{Instanziierung:} Erzeugen\\eines neuen Objektes.};}
 \end{tikzpicture}
@@ -1539,7 +1518,6 @@ name & \say{Saph}}}~}
 \begin{frame}[fragile,c]{Einen Konstruktor überladen}
 \begin{itemize}[<+(1)->]
    \itemsep3.5pt
-   % \item Hauptgrund: Standardwerte für initialen Zustand.
    \item Konstruktoren können einander mit \bjava{this} aufrufen. Dies muss dann das \emph{erste} Statement sein. Keine Rekursion.
 \end{itemize}\vspace*{-.85\baselineskip}
 \begin{layout-imageonly}
@@ -1574,11 +1552,6 @@ name & \say{Saph}}}~}
    \onslide<8->{\draw[gray,-Kite] ([yshift=3pt]pic cs:this-2l) to[out=180,in=20] ([yshift=10pt,xshift=-18pt]pic cs:Car-2r);}
 \end{tikzpicture}
 \end{frame}
-
-
-% \begin{frame}{Konstanten}
-% final im Konstruktor
-% \end{frame}
 
 \begin{frame}[c]{Static vs. Non-Static}
    \begin{itemize}[<+(1)->]
@@ -1643,15 +1616,6 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 \SidebarReset
 \fi
 
-% \subsection{Mehrere Klassen}
-% \begin{frame}{Sichtbarkeiten}
-
-% \end{frame}
-
-% \begin{frame}{Interaktion von Klassen}
-
-% \end{frame}
-
 \subsection{Sichtbarkeiten \& Gültigkeiten}
 \begin{frame}{Sichtbarkeit \& Gültigkeit}
    \begin{itemize}[<+(1)->]
@@ -1666,7 +1630,6 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
       \item Sichtbarkeits- \& Gültigkeitsbereiche überschneiden sich.
       \item Eine Variable kann z.B. gültig, aber gerade durch Überschattung nicht sichtbar sein.
    \end{itemize}
-   % Pakete, dann Sichtbarkeiten und Scopes dann Aufagbe
 \end{frame}
 
 \begin{frame}[c]{Gruppierung}
@@ -1679,7 +1642,6 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
       \end{itemize}
       \item Sichtbarkeiten interagieren auch mit Vererbungs-Mechanismen.
    \end{itemize}
-   % Pakete, dann Sichtbarkeiten und Scopes dann Aufagbe
 \end{frame}
 
 
@@ -1700,7 +1662,6 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
      \end{itemize}
      \item Hinweis: Objekte einer Klasse können auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
    \end{itemize}
-   % Pakete, dann Sichtbarkeiten und Scopes dann Aufagbe
 \end{frame}
 
 
@@ -1755,7 +1716,6 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
          \item Behandelt werden (\bjava{try-catch}), oder
          \item weitergeleitet werden (\bjava{throws}).
       \end{itemize}
-      % \item RuntimeExceptions und Errors können behandelt werden, bei Errors ist meist alles zu spät.
    \end{itemize}
 \end{frame}
 
@@ -1766,7 +1726,6 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
       \item Wird sie nicht direkt behandelt, eskaliert die Ausnahme den \say{Call-Stack} hinauf.
       \item Was über die \bjava{main}-Methode eskaliert wird von der JVM abgefangen und beendet das Programm.
       \item Ausnahmen sollten in Java aber nicht zur Werterückgabe verwendet werden.
-      % \item RuntimeExceptions und Errors können behandelt werden, bei Errors ist meist alles zu spät.
    \end{itemize}
 \end{frame}
 
@@ -1821,7 +1780,6 @@ Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ei
       \item Attribute definieren den Zustand.
       \item Methoden definieren den Verhalten.
    \end{itemize}
-   % \item Attribute definieren den Zustand, Methoden das Verhalten.% (Nicht-Statische)
    \item Der Konstruktor baut den initialen Zustand \begin{itemize}
       \item \textsb{Instanziierung}: Erzeugen eines neuen Objektes.
       \item Wenn keiner: erzeugt Java den leeren Standardkonstruktor.
@@ -1829,12 +1787,10 @@ Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ei
    \end{itemize}
    \item Klassen, Methoden,~\ldots:\hfill \textsb{Sichtbarkeit}  (\bjava{public},~\ldots)
    \item \textsb{Gültigkeit}sbereich: Wo die Daten \say{existieren}.
-   % \item Packages konstruieren Namensräume (\bjava{import}).
 \end{itemize}
 \LargeSide
 \end{frame}
 
-% \tikz{\pingu[wings raise,body=paletteB!68!pingu@white,body front=paletteB!38!pingu@white,eyes wink,eyes color=paletteB!68!pingu@white,bill color=paletteB!68!pingu@white,feet color=paletteB!68!pingu@white,heart=paletteB!38!pingu@white]
 \newsavebox\postpengu
 \savebox\postpengu{\tikz\pingu[body=paletteB!68!pingu@white,body front=paletteB!38!pingu@white,eyes wink,eyes color=paletteB!68!pingu@white,bill color=paletteB!68!pingu@white,feet color=paletteB!68!pingu@white,heart=paletteB!38!pingu@white,santa hat=paletteB!68!pingu@white,santa hat second=paletteB!38!pingu@white,santa beard=paletteB!68!pingu@white];}
 \PostPage{\begin{tikzpicture}[overlay,remember picture]
