@@ -1,42 +1,39 @@
-import java.util.Arrays;
-
 public class Loops {
 
-
    static void forLoop(int k) {
-      int[] x = new int[]{17, 22, 13, 0};
-      for(int i = 0; i < x.length - k; i += 1) {
-          System.out.println(x[i]);
+      int[] x = new int[] { 17, 22, 13, 0 };
+      for (int i = 0; i < x.length - k; i += 1) {
+         System.out.println(x[i]);
       }
    }
 
    static void forLoopDoWhile(int k) {
-      int[] x = new int[]{17, 22, 13, 0};
-      if(x.length - k <= 0)
+      int[] x = new int[] { 17, 22, 13, 0 };
+      if (x.length - k <= 0)
          return;
       int i = 0;
       do {
          System.out.println(x[i]);
          i++;
-      } while(i < x.length - k);
+      } while (i < x.length - k);
    }
 
    static void doWhile(int k) {
       int i = 1;
       do {
-          i *= k;
-          k -= i;
-      } while(k >= 5);
+         i *= k;
+         k -= i;
+      } while (k >= 5);
       System.out.println(i);
    }
 
    static void doWhileFor(int k) {
       int i = 1;
-      if(k < 5) {
+      if (k < 5) {
          i *= k;
          k -= i;
       } else {
-         for(; k >= 5; k -= i) {
+         for (; k >= 5; k -= i) {
             i *= k;
          }
       }
@@ -44,7 +41,7 @@ public class Loops {
    }
 
    public static double[] funFunFun(int factor, double... arguments) {
-      for(int i = 0; i < arguments.length; i++) {
+      for (int i = 0; i < arguments.length; i++) {
          arguments[i] *= factor;
       }
       return arguments;
