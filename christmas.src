@@ -14,12 +14,12 @@
 \def\ImpT#1{\textcolor{pingu@white}{#1}}
 \begin{frame}[c,plain]{}
 \begin{layout-imageonly}
-   \begin{center}
-      \vspace*{5.25mm}\par
-      \huge\bfseries\color{paletteB!68!white}%
-         Se greit \ImpT{EidI}\llap{\raisebox{-5.94pt}{\scalebox{.375}{\rotatebox{-20}{\usebox\christmashat}}\hskip-11pt}} recap\medskip\\
-      \small Hat jemand schon die P\scalebox{.065}{\usebox\pinguI}ngu-Gang informiert?
-   \end{center}
+\begin{center}
+   \vspace*{5.25mm}\par
+   \huge\bfseries\color{paletteB!68!white}%
+      Se greit \ImpT{EidI}\llap{\raisebox{-5.94pt}{\scalebox{.375}{\rotatebox{-20}{\usebox\christmashat}}\hskip-11pt}} recap\medskip\\
+   \small Hat jemand schon die P\scalebox{.065}{\usebox\pinguI}ngu-Gang informiert?
+\end{center}
 \end{layout-imageonly}
 \begin{tikzpicture}[overlay,remember picture]
    \node[above left,paletteB!68!white,scale=.65] at (current page.south east) {\scriptsize\bfseries\insertauthor~\textbullet~\insertdate};
@@ -428,13 +428,12 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
    \begin{alignat*}{4}
       \onslide<3->{\ms{a\text{++},~~a\text{-\,-}}}&\onslide<4->{\to~\ms{!a,~~ -a,~~ \text{++}a,~~\text{-\,-}a}}&&\onslide<5->{\pause\to~\ms{a~*~b,~~a~/~b,~~a~\%~b}} \\
       &\onslide<6->{\to~\ms{a+b,~~a-b}}&& \onslide<7->{\to~\ms{a==b,~~a<b,~~\ldots}}\\
-      & \onslide<8->{\to~\ms{a~\textasciicircum~b}}&&\onslide<9->{\to~\ms{a~\&\&~b}}\\
+      & \onslide<8->{\to~\ms{a~\mbox{\textasciicircum}~b}}&&\onslide<9->{\to~\ms{a~\&\&~b}}\\
       & \onslide<10->{\to~\ms{a~||~b}}
       \onslide<1->
    \end{alignat*}
 \end{itemize}
 \end{frame}
-
 
 \ifshowtasks
 \SidebarTask{Typbestimmung}
@@ -456,7 +455,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 \def\ob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{\mj{#2}}\only<#1->{\overbrace{\mj{#2}}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
 \def\gub<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\underbrace{#2}_{\makebox[0pt]{\scriptsize\mj{#3}}}}}
 \def\gob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\overbrace{#2}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
-\begin{frame}[fragile,c]{Typbestimmung\rhead{II}}
+\begin{frame}[c]{Typbestimmung\rhead{II}}
    \begin{itemize}
       \itemsep14pt
       \item<2-> \(\ob<3>{14}{int} \mj{-} \gub<5>{\gob<4>{\ob<3>{3D}{double} \mj{*} \ob<3>{2}{int}}{double} \mj{/} \ob<3>{12}{int}}{double} \only<6->{{}= \ob<6>{13.5}{double}}\)
@@ -464,7 +463,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
    \end{itemize}
 \end{frame}
 
-\begin{frame}[fragile,c]{Typbestimmung\rhead{III}}
+\begin{frame}[c]{Typbestimmung\rhead{III}}
    \begin{itemize}
       \itemsep14pt
       \item<2-> \(\gob<7>{\ob<3>{14}{int} \mj{-} \ob<3>{2}{int}}{int} \mj{+} \gob<6>{(\gub<5>{\gub<4>{\ob<3>{3}{int} \mj{>} \ob<3>{9}{int}}{boolean} \mj{||} \gub<4>{\ob<3>{true}{boolean} \mj{^} \ob<3>{false}{boolean}}{boolean}}{boolean} \mj{?} \ob<3>{\"Hallo\"}{String} \mj{:} \ob<3>{\"Welt\"}{String})}{String}\) \\[-6pt]
@@ -493,7 +492,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 
 \newsavebox\holdi
 \savebox\holdi{\tikz\pingu[right wing grab, left wing wave,eyes angry,santa beard];}
-\begin{frame}[c,fragile]{Standardwerte}
+\begin{frame}[c]{Standardwerte}
    \begin{itemize}[<+(1)->]
       \itemsep10pt
       \item Standardwerte für: \begin{itemize}
@@ -764,7 +763,7 @@ public class Example {
 
 \section{Arrays \& Iteration}
 \subsection{Arrays}
-\begin{frame}[fragile]{Arrays}
+\begin{frame}{Arrays}
 \begin{itemize}[<+(1)->]
    \itemsep16pt
    \item Sind komplexe Datentypen (\(\to\) Heap).
@@ -784,7 +783,7 @@ public class Example {
 
 \ifshowtasks
 \SidebarTask{Kachelland}
-\begin{frame}[c,fragile]{Kachelland}
+\begin{frame}[c]{Kachelland}
 \flushleft\footnotesize
 \onslide<2->{Sie befinden sich in Kachelland, welches auf einem schachbrettartigen Feld geplant wurde.
 Für diese Aufgabe betrachten wir die Fortbewegungskosten, die ein Charakter auf den jeweiligen Feldern hat, wobei wir zwei Formen des Transports unterscheiden: ohne Hilfsmittel und im Boot.
@@ -1104,7 +1103,7 @@ System.out.println(i);
 
 \newsavebox\agentpingu
 \savebox\agentpingu{\tikz\pingu[cloak=pingu@black,sunglasses,tie=pingu@black,eyes angry,glasses opacity=.876];}
-\begin{frame}[fragile,c]{Call-By \& Seiteneffekte}
+\begin{frame}[c]{Call-By \& Seiteneffekte}
    \vspace*{.75\baselineskip}\begin{itemize}
       \itemsep11pt
       \item<3-> Aufruf: \say{Stack-Einträge} der Parameter werden \textit{kopiert}.
@@ -1147,7 +1146,7 @@ System.out.println(i);
 
 \ifshowtasks
 \SidebarTask{Methodenausgaben}
-\begin{frame}[fragile,c]{Methodenausgaben}
+\begin{frame}[c]{Methodenausgaben}
 \flushleft\onslide<2->{Betrachten Sie das Java-Programm auf dem Blatt und geben Sie für die kommentierten Zeilen jeweils die Werte der Variablen \bjava{a}, \bjava{b} und \bjava{c} an (tragen Sie diese in die entsprechende Box \smash{\tikz[baseline=.135cm]\draw[gray,rounded corners=1pt](0,0) rectangle (.9cm,.35cm+.33\baselineskip);} ein).
 Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten Java-Mechanismen. Relevant sind: i)~Überladungen, ii)~Seiteneffekte, iii)~Überschattungen und iv)~Standardwerte. Sie dürfen in ihrer Skizzierung die römischen Zahlen verwenden, um auf die Mechanismen hinzuweisen.}\par
 \onslide<1->{\ShortSide}%
@@ -1329,7 +1328,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
 
 \ifshowtasks
 \SidebarTask{Reverse}
-\begin{frame}[fragile,c]{Reverse}
+\begin{frame}[c]{Reverse}
 \flushleft\onslide<2->{Schreiben Sie eine Methode \bjava{static void reverse} \bjava{(int[] arr)} welche das übergebene Array umdreht, sodass das erste Elemente nun an letzter Stelle steht, das zweite an vorletzter Stelle,~\ldots\ und das letzte Element nun an erster Stelle steht.\par}
 \onslide<1->{\ShortSide}%
 \end{frame}
@@ -1567,7 +1566,7 @@ name & \say{Saph}}}~}
 
 \ifshowtasks
 \SidebarTask{Kameraszenario}
-\begin{frame}[fragile,c]{Kameraszenario}
+\begin{frame}[c]{Kameraszenario}
 \onslide<2->{\footnotesize\flushleft Sie sehen das Grundgerüst einer Kameraklasse. Bearbeiten Sie die folgenden beiden Teilaufgaben,
 welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 \begin{enumerate}
@@ -1643,7 +1642,6 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
       \item Sichtbarkeiten interagieren auch mit Vererbungs-Mechanismen.
    \end{itemize}
 \end{frame}
-
 
 \begin{frame}{Scopes}
    \begin{itemize}[<+(1)->]
@@ -1732,7 +1730,7 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 
 \ifshowtasks
 \SidebarTask{Fehler finden}
-\begin{frame}[fragile,c]{Fehler finden}
+\begin{frame}[c]{Fehler finden}
 \onslide<2->{\footnotesize\flushleft Im Code finden sich \textsb{10 Fehler}, welche vom Java-Compiler erkannt werden.
 Identifizieren Sie \textsb{acht} dieser Fehler durch \begin{enumerate}
     \item die Angabe der Code-Zeilennummer und
@@ -1746,7 +1744,7 @@ Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ei
 \SidebarReset
 
 \SidebarSolution{Auflösung 10}
-\begin{frame}[fragile,c]{Fehlersuche}
+\begin{frame}[c]{Fehlersuche}
    \updateitemize{15.}%
    \begin{enumerate}[<+(1)->]
       \itemsep9.25pt
@@ -1758,7 +1756,7 @@ Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ei
    \end{enumerate}
 \end{frame}
 
-\begin{frame}[fragile,c]{Fehlersuche\rhead{II}}
+\begin{frame}[c]{Fehlersuche\rhead{II}}
    \updateitemize{15.}%
    \begin{enumerate}[<+(1)->]
       \itemsep9.25pt
