@@ -1460,7 +1460,7 @@ name & \say{Saph}}}~}
 \end{layout-imageonly}
 \begin{tikzpicture}[overlay,remember picture]
    \onslide<9->{\node[below left=-2cm] (pingu) at(current page.north east) {\rotatebox{140}{\usebox\pingunote}};
-   \node[below left,yshift=.65cm,xshift=.75cm,font=\footnotesize,align=right] at(pingu.west) {Jedes Objekt erzeugt\\alle Instanzvariablen \say{für sich}\\allein.};}
+   \node[below left,yshift=.2cm,xshift=.75cm,font=\footnotesize,align=right] at(pingu.west) {Jedes Objekt erzeugt\\alle Instanzvariablen \say{für sich}\\allein.};}
 \end{tikzpicture}
 \end{frame}
 
