@@ -1157,7 +1157,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
 \begin{frame}[fragile,c]{Methodenausgaben\rhead{II}}
 \SetupLstHl
 \begin{columns}[onlytextwidth,c]
-\column{.5\linewidth}
+\column{.45\linewidth}
 \lstfs{7}\begin{plainjava}
 !*\onslide<2->*!|ihl|public class MethodExample {|ihl|
 !*\onslide<2->*!   |ihl|public static char a;|ihl|
@@ -1173,7 +1173,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
 !*\onslide<2->*!   |ihl|}|ihl|
 !*\onslide<2->*!}!*\onslide<1->*!
 \end{plainjava}
-\column{.5\linewidth}
+\column{.55\linewidth}
 \onslide<3->{Allgemein:}
 \begin{itemize}
    \itemsep8pt
@@ -1191,7 +1191,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
 \begin{frame}[fragile,c]{Methodenausgaben\rhead{III}}
 \SetupLstHl
 \begin{columns}[onlytextwidth,c]
-\column{.5\linewidth}
+\column{.45\linewidth}
 \lstfs{7}\begin{plainjava}
 |ihl|public class MethodExample {|ihl|
    public static char a;
@@ -1207,7 +1207,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
    |ihl|}|ihl|
 }!*\onslide<1->*!
 \end{plainjava}
-\column{.5\linewidth}
+\column{.55\linewidth}
 \onslide<2->{Werte:}
 \begin{itemize}
    \itemsep8pt
@@ -1220,7 +1220,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
 \begin{frame}[fragile,c]{Methodenausgaben\rhead{IV}}
 \SetupLstHl
 \begin{columns}[onlytextwidth,c]
-\column{.5\linewidth}
+\column{.45\linewidth}
 \lstfs{7}\begin{plainjava}
 |ihl|public class MethodExample {|ihl|
    public static char a;
@@ -1241,7 +1241,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
    |ihl|}|ihl|
 }!*\onslide<1->*!
 \end{plainjava}
-\column{.5\linewidth}
+\column{.55\linewidth}
 \onslide<2->{Werte:}
 \begin{itemize}
    \itemsep8pt
@@ -1255,7 +1255,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
 \begin{frame}[fragile,c]{Methodenausgaben\rhead{V}}
 \SetupLstHl
 \begin{columns}[onlytextwidth,c]
-\column{.5\linewidth}
+\column{.45\linewidth}
 \lstfs{7}\begin{plainjava}
 |ihl|public class MethodExample {|ihl|
    public static char a;
@@ -1276,7 +1276,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
    |ihl|}|ihl|
 }!*\onslide<1->*!
 \end{plainjava}
-\column{.5\linewidth}
+\column{.55\linewidth}
 \onslide<2->{Werte:}
 \begin{itemize}
    \itemsep8pt
@@ -1291,7 +1291,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
 \begin{frame}[fragile,c]{Methodenausgaben\rhead{VI}}
 \SetupLstHl
 \begin{columns}[onlytextwidth,c]
-\column{.5\linewidth}
+\column{.45\linewidth}
 \lstfs{7}\begin{plainjava}
 |ihl|public class MethodExample {|ihl|
    public static char a;
@@ -1311,7 +1311,7 @@ Erklären Sie die Ausgaben dabei durch eine kurze Erläuterung der beteiligten J
    |ihl|}|ihl|
 }!*\onslide<1->*!
 \end{plainjava}
-\column{.5\linewidth}
+\column{.55\linewidth}
 \onslide<2->{Werte:}
 \begin{itemize}
    \itemsep8pt
