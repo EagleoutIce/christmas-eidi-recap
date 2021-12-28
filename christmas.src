@@ -1639,7 +1639,7 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
          \item Können über \bjava{import <pack:c:age>;} sichtbar gemacht werden.
          \item Dabei wird \bjava{java.lang} immer importiert.
       \end{itemize}
-      \item Sichtbarkeiten interagieren auch mit Vererbungs-Mechanismen.
+      \item Sichtbarkeiten interagieren auch mit Vererbung.
    \end{itemize}
 \end{frame}
 
