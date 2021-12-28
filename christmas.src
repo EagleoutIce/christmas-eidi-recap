@@ -1643,22 +1643,29 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
    \end{itemize}
 \end{frame}
 
-\begin{frame}{Scopes}
+\begin{frame}[c]{Scopes}
    \begin{itemize}[<+(1)->]
-      \itemsep6pt
+      \itemsep13pt
       \item Java nutzt \textsb{Packages} als Namensräume \begin{itemize}
          \item Ordner der dann alle zugehorigen Java-Dateien enthält.
          \item Können über \bjava{import <package>;} sichtbar gemacht werden.
          \item Dabei wird \bjava{java.lang} immer importiert.
       \end{itemize}
       \item Sichtbarkeiten interagieren auch mit Verebung.
+   \end{itemize}
+\end{frame}
+
+
+\begin{frame}[c]{Scopes\rhead{II}}
+   \begin{itemize}[<+(1)->]
+      \itemsep13pt
       \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{itemize}
          \item \textit{private:} Nur innerhalb der Klasse.
          \item \textit{protected:} Im gesamten Paket sowie allen Unterklassen.
          \item \textit{public:} Überall sichtbar wo Paket sichtbar.
          \item \textit{\say{default}:} Überall im Paket.
      \end{itemize}
-     \item Hinweis: Objekte einer Klasse können auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
+     \item \textit{Hinweis:} Objekte einer Klasse können auf private Elemente anderer Objekte der gleichen Klasse zugreifen.
    \end{itemize}
 \end{frame}
 
