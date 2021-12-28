@@ -1082,7 +1082,7 @@ System.out.println(i);
 !*\onslide<4->*!}
 \end{plainjava}
    \begin{itemize}
-      \item<6-> Verboten, da nicht jeder Ausführungspfad \bjava{int} liefert.
+      \item<6-> \textsb{Verboten}, da nicht jeder Ausführungspfad \bjava{int} liefert.
    \end{itemize}
 \end{frame}
 
