@@ -452,9 +452,9 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 
 \SidebarSolution{Auflösung 3}
 \def\mj#1{\text{\bjava{#1}}}
-\def\ob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{\mj{#2}}\only<#1->{\overbrace{\mj{#2}}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
-\def\gub<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\underbrace{#2}_{\makebox[0pt]{\scriptsize\mj{#3}}}}}
-\def\gob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\overbrace{#2}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
+\def\ob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{\mj{#2}}\only<#1->{\overbracket[.33pt]{\mj{#2}}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
+\def\gub<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\underbracket[.33pt]{#2}_{\makebox[0pt]{\scriptsize\mj{#3}}}}}
+\def\gob<#1>#2#3{\only<-\the\numexpr#1-1\relax|handout:0>{#2}\only<#1->{\overbracket[.33pt]{#2}^{\makebox[0pt]{\scriptsize\mj{#3}}}}}
 \begin{frame}[c]{Typbestimmung\rhead{II}}
    \begin{itemize}
       \itemsep14pt
@@ -486,7 +486,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
          \onslide<7->{\bjava{int x = 12;}\quad \bjava{char w; w = 'x';}}
    \end{description}\medskip
    \begin{center}
-      \onslide<8->{\bjava{final} erzwingt, dass eine Variable nur Initialisiert und dann nicht mehr zugewiesen werden darf.}
+      \onslide<8->{\bjava{final} erzwingt, dass eine Variable nur Initialisiert und dann nicht erneut zugewiesen werden darf.}
    \end{center}
 \end{frame}
 
