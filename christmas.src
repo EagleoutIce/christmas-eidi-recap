@@ -1635,7 +1635,7 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
    \begin{itemize}[<+(1)->]
       \itemsep14pt
       \item Java nutzt \textsb{Packages} als Namensräume \begin{itemize}
-         \item Ordner der dann alle zugehorigen Java-Dateien enthält.
+         \item Ordner der dann alle zugehörigen Java-Dateien enthält.
          \item Können über \bjava{import <pack:c:age>;} sichtbar gemacht werden.
          \item Dabei wird \bjava{java.lang} immer importiert.
       \end{itemize}
@@ -1643,20 +1643,8 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
    \end{itemize}
 \end{frame}
 
+
 \begin{frame}[c]{Scopes}
-   \begin{itemize}[<+(1)->]
-      \itemsep13pt
-      \item Java nutzt \textsb{Packages} als Namensräume \begin{itemize}
-         \item Ordner der dann alle zugehorigen Java-Dateien enthält.
-         \item Können über \bjava{import <package>;} sichtbar gemacht werden.
-         \item Dabei wird \bjava{java.lang} immer importiert.
-      \end{itemize}
-      \item Sichtbarkeiten interagieren auch mit Verebung.
-   \end{itemize}
-\end{frame}
-
-
-\begin{frame}[c]{Scopes\rhead{II}}
    \begin{itemize}[<+(1)->]
       \itemsep13pt
       \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{itemize}
