@@ -569,7 +569,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 \begin{frame}[c,fragile]{Überschatten}
 \vspace*{.885\baselineskip}\begin{itemize}[<+(1)->]
    \itemsep4pt
-   \item<3-> Instanz-/Klassen-Variable mit gleichem Be-\\
+   \item<3-> Instanz-/Klassenvariable mit gleichem Be-\\
    zeichner wie lokale Variable.
    \item<4-> Der lokale Bezeichner überschattet den \say{globalen}.
    \item<5-> So kann auch der Typ verändert werden.
