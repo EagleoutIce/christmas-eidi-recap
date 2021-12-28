@@ -119,7 +119,7 @@ XII. Suchen und Sortieren}%
    \item<2-> Terminiertheit \begin{itemize}
       \item<4-> \T{n} ist konstant.
       \item<5-> Für \(n = 0\), bzw. \(n = 1\) trivial.
-      \item<6-> Für \(n > 1\) wächst \(i\) streng monoton und wird irgendwann \(i < n - 1\) verletzen.
+      \item<6-> Für \(n > 1\) wächst \(i\) streng monoton an und wird irgendwann \(i < n - 1\) verletzen.
    \end{itemize}
    \item<3-> Partielle Korrektheit
 \end{enumerate}
