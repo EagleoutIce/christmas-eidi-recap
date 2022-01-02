@@ -1007,7 +1007,7 @@ System.out.println(i);
 \begin{itemize}[<+(1)->]
    \itemsep18pt
    \item Arrays sind komplexe Datentypen.
-   \item Mehrdimensionale Arrays sind eindimensionale Arrays von Eindimensionalen Arrays von\ldots
+   \item Mehrdimensionale Arrays sind eindimensionale Arrays von eindimensionalen Arrays von\ldots
    \item Die drei Schleifenarten sind gleichmächtig. \begin{itemize}
       \item Maximum bekannt: \bjava{for}
       \item Mindestens ein mal: \bjava{do}-\bjava{while}
