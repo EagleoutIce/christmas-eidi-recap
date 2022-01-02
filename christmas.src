@@ -382,9 +382,9 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 
 \section{Konstrukte}
 \subsection{Datentypen}
-\centering\def\dt#1{{\large\bfseries\textcolor{paletteB!68!white}{\strut#1}}}
+\def\dt#1{{\large\bfseries\textcolor{paletteB!68!white}{\strut#1}}}
 \begin{frame}[c]{Primitive Datentypen}
-\begin{layout-imageonly}
+\centering\begin{layout-imageonly}
 \begin{tikzpicture}[scale=2.65]
    \onslide<2->{\node[right] (boolean) at(0,0)             {\dt{boolean}};}
    \onslide<3->{\node[right] (byte) at(0,-1.66*1/2.65)     {\dt{byte}};}
