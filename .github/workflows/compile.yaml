@@ -21,15 +21,18 @@ jobs:
         sudo apt install poppler-utils
         pip install sltx
         echo "tx-full" | sltx docker
-    - name: Compile the Documents
+    - name: Compile the Presentations
       run: |
         sltx compile --root --profile "tx-full" "christmas.tex" "noanim-christmas.tex" "short-christmas.tex" "short-noanim-christmas.tex"
         pdftoppm -png -f 1 -l 1 ./noanim-christmas.pdf preview
+    - name: Compile the Presentations
+      run: |
+        cd exercise-sheet && sltx compile --root --profile "tx-full" "tasks.tex" && pdftoppm -png -f 1 -l 1 ./tasks.pdf preview-tasks
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
-        git add -f "christmas.pdf" "noanim-christmas.pdf" "short-christmas.pdf" "short-noanim-christmas.pdf" "preview-01.png"
+        git add -f "christmas.pdf" "noanim-christmas.pdf" "short-christmas.pdf" "short-noanim-christmas.pdf" "preview-01.png" "exercise-sheet/preview-tasks-01.png" "exercise-sheet/tasks.pdf"
         git commit -m "Newly compiled PDFs"
     - name: Push changes
       uses: ad-m/github-push-action@master
