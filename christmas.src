@@ -347,7 +347,7 @@ Auf der Basis hätte ich jetzt gerne eine Möglichkeit herauszufinden, wie ich i
 \begin{frame}[b]{Algorithmenkonstruktion\rhead{IV}}
 \begin{itemize}[<+(1)->]
    \itemsep4pt
-   \item Und nun das testen aller möglichen Anwendungen:
+   \item Und nun das Testen aller möglichen Anwendungen:
 \begin{algorithm}[H]
 \onslide<3->{\(\text{guatzla} \gets 0\)\;}
 \onslide<4->{\For{\(A \gets (0, \ldots, 0)\) \KwTo \((R_{\max, 1}, \ldots, R_{\max, m})\)}{
