@@ -173,7 +173,6 @@ public static long L(int n) {
 \end{frame}
 \SidebarReset
 \fi
-
 \subsection{Definition}
 
 \begin{frame}[c]{But what is an Algorithm?}
@@ -187,7 +186,6 @@ public static long L(int n) {
       \item<5-> {\sbfamily Fordert gemeinsames Sprachverständnis.}
 \end{itemize}
 \end{frame}
-
 \subsection{Algorithmus-Diskussion}
 {\def\comm#1{\hfill\textcolor{gray}{\footnotesize#1}}
 \begin{frame}[c]{Discussing an Algorithm}
@@ -1619,15 +1617,15 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 \begin{frame}{Sichtbarkeit \& Gültigkeit}
    \begin{itemize}[<+(1)->]
       \itemsep14pt
-      \item Klassen, Methoden \& Attribute haben \textsb{Sichtbarkeiten} (Scope). \begin{itemize}
+      \item Klassen, Methoden \& Attribute haben \textsb{Sichtbarkeiten}. \begin{itemize}
          \item Sie können nur verwendet werden, wo sie sichtbar sind.
          \item Diese Sichtbarkeit wird durch \bjava{public}, \bjava{private},~\ldots\ kontrolliert.
       \end{itemize}
-      \item Daten (Variablen,~\ldots) haben einen \textsb{Gültigkeitsbereich}. \begin{itemize}
-         \item Solange sie vom Stack aus von Java erreichbar sind.
+      \item Variablen,~\ldots\ haben einen \textsb{Gültigkeitsbereich} (Scope). \begin{itemize}
+         \item So gibt es den Gültigkeitsbereich der Klasse und
+         \item Den lokalen Gültigkeitsbereich in Methoden, Blöcken,~\ldots
       \end{itemize}
-      \item Sichtbarkeits- \& Gültigkeitsbereiche überschneiden sich.
-      \item Eine Variable kann z.B. gültig, aber gerade durch Überschattung nicht sichtbar sein.
+      \item Eine Variable kann z.B. sichtbar, aber gerade durch Überschattung nicht gültig sein.
    \end{itemize}
 \end{frame}
 
@@ -1647,7 +1645,7 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 \begin{frame}[c]{Scopes}
    \begin{itemize}[<+(1)->]
       \itemsep13pt
-      \item Java erlaubt vier verschiedene Zugriffsmodifikatoren: \begin{itemize}
+      \item Java erlaubt vier verschiedene Sichtbarkeitsmodifikatoren: \begin{itemize}
          \item \textit{private:} Nur innerhalb der Klasse.
          \item \textit{protected:} Im gesamten Paket sowie allen Unterklassen.
          \item \textit{public:} Überall sichtbar wo Paket sichtbar.
@@ -1661,7 +1659,7 @@ welche aufeinander aufbauen. Sie dürfen keine (Java-)Ausnahmen verwenden.
 \begin{frame}[fragile,c]{Ein Scope Beispiel}
    \small\begin{itemize}[<+(1)->]
       \itemsep6pt
-   \item Es gibt vier Geltungsbereiche (\textit{engl.} scopes) für Variablen.\vspace*{-8\baselineskip}
+   \item Es gibt vier Sichtbarkeitsbereiche für Variablen.\vspace*{-8\baselineskip}
 \begin{layout-imageonly}\lstfs{10}
 \begin{plainjava}[language=xJava]
 !*\onslide<3->*!|zws|public|zws| class Pinguin { // !*\solGet{comments}{\textbf{1.}}*! global
@@ -1779,7 +1777,7 @@ Folgefehler zählen dabei nicht als separate Fehler. Wird also beispielsweise ei
       \item \bjava{this} erlaubt Aufruf von Überladungen.
    \end{itemize}
    \item Klassen, Methoden,~\ldots:\hfill \textsb{Sichtbarkeit}  (\bjava{public},~\ldots)
-   \item \textsb{Gültigkeit}sbereich: Wo die Daten \say{existieren}.
+   \item \textsb{Gültigkeit}sbereich: Wo die Variablen \say{deklariert sind}.
 \end{itemize}
 \LargeSide
 \end{frame}
