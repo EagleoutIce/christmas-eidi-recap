@@ -1541,7 +1541,7 @@ name & \say{Saph}}}~}
 \itemsep3.5pt
 \item<9-> \cjava{new Car()}\,: \onslide<10->{\bjava{topSpeed} ist \bjava{20}, \bjava{pengu} ist \bjava{true}. Mit Piep!}
 \item<11-> \cjava{new Car(14)}\,: \onslide<12->{\bjava{topSpeed} ist \bjava{14}, \bjava{pengu} ist \bjava{true}. Mit Piep!}
-\item<13-> \cjava{new Car(2, false)}\,: \onslide<14->{\bjava{topSpeed} ist \bjava{2}, \bjava{pengu} ist \bjava{False}. Kein Piep!}
+\item<13-> \cjava{new Car(2, false)}\,: \onslide<14->{\bjava{topSpeed} ist \bjava{2}, \bjava{pengu} ist \bjava{false}. Kein Piep!}
 \end{itemize}
 \end{layout-imageonly}
 \begin{tikzpicture}[overlay,remember picture]
