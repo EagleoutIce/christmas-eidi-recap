@@ -34,12 +34,14 @@
 \author{Florian Sihler}
 \institute{Institute of Distributed Systems \(\circ\) University Ulm}
 
-\pgfmathsetseed{\number\pdfrandomseed}
+\pgfmathsetseed{\number\ifdefined\pdfrandomseed\pdfrandomseed\else\randomseed\fi}
 
 \usetikzlibrary{decorations,decorations.pathreplacing,decorations.text,arrows.meta,tikzmark,3d}
 
 \makeatletter
-\usepackage{tikz-qr}
+\providecommand\input@path{}
+\g@addto@macro\input@path{{lib/fancyqr/}}
+\usepackage{lib/fancyqr/fancyqr}
 \colorlet{qr@fancy@gradient@tl}{pingu@white}
 \colorlet{qr@fancy@gradient@br}{paletteB!78!pingu@white}
 \colorlet{codeouthl}{gray!75!white}

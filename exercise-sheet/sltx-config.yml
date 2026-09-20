@@ -1,6 +1,0 @@
-default_files:
-  - tasks.tex
-default_threads: 1
-default_recipe: 'default-lua-latexmk.recipe'
-base_args:
-  - '-time'

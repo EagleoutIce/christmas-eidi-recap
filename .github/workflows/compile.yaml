@@ -2,38 +2,58 @@ name: build-slides
 'on':
   push:
     branches: [ master, main ]
+  workflow_dispatch:
+
+permissions:
+  contents: write
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
     - name: Checkout git repository
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
       with:
-        lfs: true
-        submodules: true
-    - name: Setup Python environment for sltx
-      uses: actions/setup-python@v2
-      with:
-        python-version: '3.8'
-    - name: Setup and run sltx-install (and pu)
+        submodules: recursive
+
+    - name: Setup poppler-utils for the previews
       run: |
-        sudo apt install poppler-utils
-        pip install sltx
-        echo "tx-full" | sltx docker
+        sudo apt-get update
+        sudo apt-get install -y poppler-utils
+
     - name: Compile the Presentations
+      uses: xu-cheng/latex-action@v4
+      with:
+        docker_image: eagleoutice/lithie-tx-full:latest
+        latexmk_use_lualatex: true
+        latexmk_shell_escape: true
+        root_file: |
+          christmas.tex
+          noanim-christmas.tex
+          short-christmas.tex
+          short-noanim-christmas.tex
+
+    - name: Compile the Exercise Sheet
+      uses: xu-cheng/latex-action@v4
+      with:
+        docker_image: eagleoutice/lithie-tx-full:latest
+        working_directory: exercise-sheet
+        latexmk_use_lualatex: true
+        latexmk_shell_escape: true
+        root_file: tasks.tex
+
+    - name: Generate the previews
       run: |
-        sltx compile --root --profile "tx-full" "christmas.tex" "noanim-christmas.tex" "short-christmas.tex" "short-noanim-christmas.tex"
         pdftoppm -png -f 1 -l 1 ./noanim-christmas.pdf preview
-    - name: Compile the Presentations
-      run: |
-        cd exercise-sheet && sltx compile --root --profile "tx-full" "tasks.tex" && pdftoppm -png -f 1 -l 1 ./tasks.pdf preview-tasks
+        pdftoppm -png -f 1 -l 1 ./exercise-sheet/tasks.pdf ./exercise-sheet/preview-tasks
+
     - name: Commit
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "GitHub Action"
         git add -f "christmas.pdf" "noanim-christmas.pdf" "short-christmas.pdf" "short-noanim-christmas.pdf" "preview-01.png" "exercise-sheet/preview-tasks-01.png" "exercise-sheet/tasks.pdf"
-        git commit -m "Newly compiled PDFs"
+        git diff --quiet --cached || git commit -m "Newly compiled PDFs"
+
     - name: Push changes
       uses: ad-m/github-push-action@master
       with:
