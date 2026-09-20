@@ -24,7 +24,6 @@ jobs:
     - name: Compile the Presentations
       uses: xu-cheng/latex-action@v4
       with:
-        docker_image: eagleoutice/lithie-tx-full:latest
         latexmk_use_lualatex: true
         latexmk_shell_escape: true
         root_file: |
@@ -36,7 +35,6 @@ jobs:
     - name: Compile the Exercise Sheet
       uses: xu-cheng/latex-action@v4
       with:
-        docker_image: eagleoutice/lithie-tx-full:latest
         working_directory: exercise-sheet
         latexmk_use_lualatex: true
         latexmk_shell_escape: true

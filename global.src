@@ -39,9 +39,7 @@
 \usetikzlibrary{decorations,decorations.pathreplacing,decorations.text,arrows.meta,tikzmark,3d}
 
 \makeatletter
-\providecommand\input@path{}
-\g@addto@macro\input@path{{lib/fancyqr/}}
-\usepackage{lib/fancyqr/fancyqr}
+\usepackage{fancyqr}
 \colorlet{qr@fancy@gradient@tl}{pingu@white}
 \colorlet{qr@fancy@gradient@br}{paletteB!78!pingu@white}
 \colorlet{codeouthl}{gray!75!white}
